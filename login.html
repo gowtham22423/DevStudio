@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Login & Verification | DevStudio Portal</title>
+  
+  <!-- SEO & Icons -->
+  <meta name="description" content="Access your client portal securely using multi-factor OTP verification.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem('devstudio_logged_in') === 'true') {
+      window.location.replace('index.html');
+    }
+  </script>
+  <style>
+    .login-container-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 3rem 1rem;
+    }
+    .otp-digit {
+      width: 3.25rem;
+      height: 3.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-slate-50);
+      transition: var(--transition-smooth);
+    }
+    .otp-digit:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+    /* Log table style details */
+    .history-card {
+      width: 100%;
+      max-width: 550px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-md);
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-md);
+      z-index: 10;
+    }
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+    .history-table th, .history-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .history-table th {
+      background-color: var(--bg-slate-50);
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+    .history-table td {
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body class="login-body">
+
+  <!-- Back to Home Link -->
+  <a href="index.html" class="back-home">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Home
+  </a>
+
+  <div class="login-container-wrapper">
+    <!-- Login Form Container -->
+    <div class="login-wrapper">
+      <div class="login-header">
+        <a href="index.html" class="logo">
+          DevStudio<span class="logo-dot"></span>
+        </a>
+        <h2 id="portalHeading">Client Portal Login</h2>
+        <p id="portalSubheading">Securely access project boards, invoices, and messaging tools.</p>
+      </div>
+
+      <!-- STEP 1: Main Login Form -->
+      <form id="loginForm" class="login-form" novalidate>
+        <!-- Email / Gmail Field -->
+        <div class="form-group">
+          <label for="login-email">Gmail Address *</label>
+          <input type="email" id="login-email" name="email" placeholder="example@gmail.com" required>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="login-phone">Phone Number *</label>
+          <input type="tel" id="login-phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="login-password">Password *</label>
+          <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+          <button type="button" id="passwordToggle" class="password-toggle" aria-label="Toggle Password Visibility">
+            <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+
+        <!-- Options -->
+        <div class="login-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember">
+            Remember me
+          </label>
+          <a href="#" id="forgotPasswordLink" class="forgot-link">Forgot Password?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-submit" style="width: 100%;">Sign In & Send OTP</button>
+
+        <!-- Divider -->
+        <div class="login-divider">or continue with</div>
+
+        <!-- Social Logins -->
+        <div class="social-login-grid">
+          <button type="button" class="social-login-btn" id="googleLoginBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.767 5.767 0 0 1 8.2 12.75a5.767 5.767 0 0 1 5.79-5.764c1.55 0 2.94.578 4.015 1.528l3.053-3.04C19.208 3.738 16.745 2.5 13.99 2.5 8.196 2.5 3.5 7.18 3.5 12.95s4.696 10.45 10.49 10.45c5.795 0 10.51-4.715 10.51-10.486 0-.663-.07-1.3-.2-1.928H12.24z"/></svg>
+            Sign in with Google
+          </button>
+        </div>
+      </form>
+
+      <!-- STEP 2: OTP Verification Form (Initially Hidden) -->
+      <form id="otpForm" class="login-form" style="display: none;" novalidate>
+        <div class="form-group" style="text-align: center; margin-bottom: 2rem;">
+          <label style="font-size: 1rem; margin-bottom: 0.5rem; display: block; font-weight: 700;">Enter 6-Digit Code</label>
+          <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.5;">We have sent a verification code to your inputs. Enter it below to complete verification.</p>
+          <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.5rem;">
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+            <input type="text" class="otp-digit" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit" style="width: 100%;">Verify & Log In</button>
+        <div class="login-footer" style="margin-top: 1.5rem;">
+          <p>Didn't receive code? <a href="#" id="resendOtpLink">Resend OTP</a> <span id="otpTimer" style="color: var(--text-light); font-weight: 600;">(60s)</span></p>
+        </div>
+      </form>
+
+      <div class="login-footer" id="portalFooter">
+        <p>Don't have a portal account? <a href="index.html#contact">Request Portal Access</a></p>
+      </div>
+    </div>
+
+    <!-- Client Login History Logs Panel -->
+    <div class="history-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.1rem; color: var(--secondary-color); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Client Login Logs (Admin Portal)
+        </h3>
+        <button id="clearLogsBtn" class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; border-radius: var(--border-radius-sm);">Clear Logs</button>
+      </div>
+      <div style="overflow-x: auto; max-height: 200px;">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Gmail Address</th>
+              <th>Phone</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="logsTableBody">
+            <tr>
+              <td colspan="4" style="text-align: center; color: var(--text-light);">No login history found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Alert -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive">
+    <span class="toast-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </span>
+    <span class="toast-text">Success message</span>
+  </div>
+
+  <!-- Script for Interactivity -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+      const otpForm = document.getElementById('otpForm');
+      const passwordInput = document.getElementById('login-password');
+      const passwordToggle = document.getElementById('passwordToggle');
+      const eyeIcon = document.getElementById('eye-icon');
+      const toast = document.getElementById('toast');
+      const logsTableBody = document.getElementById('logsTableBody');
+      const clearLogsBtn = document.getElementById('clearLogsBtn');
+      const portalHeading = document.getElementById('portalHeading');
+      const portalSubheading = document.getElementById('portalSubheading');
+
+      // State variables
+      let generatedOtp = "";
+      let tempClientData = null;
+      let timerInterval = null;
+
+      // Toast feedback helper
+      const showToast = (message) => {
+        const toastText = toast.querySelector('.toast-text');
+        toastText.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      };
+
+      // Toggle Password Visibility
+      passwordToggle.addEventListener('click', () => {
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+        if (isPassword) {
+          eyeIcon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+        } else {
+          eyeIcon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+        }
+      });
+
+      // --- Admin Login History Logs Storage Methods ---
+      const loadHistoryLogs = () => {
+        const logs = JSON.parse(localStorage.getItem('devstudio_login_logs')) || [];
+        if (logs.length === 0) {
+          logsTableBody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-light);">No login history found.</td></tr>`;
+          return;
+        }
+        
+        logsTableBody.innerHTML = logs.map(log => `
+          <tr>
+            <td>${log.time}</td>
+            <td>${log.email}</td>
+            <td>${log.phone}</td>
+            <td style="color: ${log.status.includes('Success') ? '#10b981' : '#ef4444'}; font-weight: 600;">${log.status}</td>
+          </tr>
+        `).join('');
+      };
+
+      const addHistoryLog = (email, phone, status) => {
+        const logs = JSON.parse(localStorage.getItem('devstudio_login_logs')) || [];
+        const newLog = {
+          time: new Date().toLocaleString(),
+          email: email,
+          phone: phone,
+          status: status
+        };
+        logs.unshift(newLog); // add to top
+        localStorage.setItem('devstudio_login_logs', JSON.stringify(logs));
+        loadHistoryLogs();
+      };
+
+      clearLogsBtn.addEventListener('click', () => {
+        localStorage.removeItem('devstudio_login_logs');
+        loadHistoryLogs();
+        showToast("🧹 Login logs history cleared successfully.");
+      });
+
+      // Load logs initial view
+      loadHistoryLogs();
+
+      // --- Step 1: Handle Login Submit ---
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('login-email').value.trim();
+        const phone = document.getElementById('login-phone').value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!email || !phone || !password) {
+          showToast("⚠️ All asterisk (*) fields are required.");
+          return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showToast("⚠️ Please enter a valid Gmail address.");
+          return;
+        }
+
+        const digitsOnly = phone.replace(/\D/g, "");
+        if (digitsOnly.length < 10) {
+          showToast("⚠️ Please enter a valid 10-digit phone number.");
+          return;
+        }
+
+        // Simulate Credentials matching & generating random OTP code
+        const submitBtn = loginForm.querySelector('[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending OTP...";
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Sign In & Send OTP";
+
+          // Generate OTP
+          generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+          tempClientData = { email, phone };
+
+          // Show mock OTP to user
+          alert(`[MOCK Verification Code sent via SMS/Email to ${phone}]: Your OTP code is: ${generatedOtp}`);
+
+          // Transition UI to Step 2 (OTP code verification)
+          loginForm.style.display = "none";
+          otpForm.style.display = "block";
+          portalHeading.textContent = "Verify Security Code";
+          portalSubheading.textContent = `A verification code was sent to ${email}. Check your phone ending in ${phone.slice(-4)}.`;
+
+          startOtpTimer();
+          showToast(`📩 OTP Code generated. Enter it to verify credentials.`);
+          
+          // Focus first digit box
+          document.querySelectorAll('.otp-digit')[0].focus();
+        }, 1500);
+      });
+
+      // --- OTP inputs shifting controls ---
+      const otpInputs = document.querySelectorAll('.otp-digit');
+      otpInputs.forEach((input, index) => {
+        input.addEventListener('keyup', (e) => {
+          if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+            otpInputs[index + 1].focus();
+          }
+          if (e.key === 'Backspace' && index > 0 && e.target.value.length === 0) {
+            otpInputs[index - 1].focus();
+          }
+        });
+      });
+
+      // --- OTP Timer countdown ---
+      const startOtpTimer = () => {
+        clearInterval(timerInterval);
+        let timeLeft = 60;
+        const timerElement = document.getElementById('otpTimer');
+        timerElement.textContent = `(${timeLeft}s)`;
+        
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          if (timeLeft >= 0) {
+            timerElement.textContent = `(${timeLeft}s)`;
+          } else {
+            clearInterval(timerInterval);
+            timerElement.textContent = "(Expired)";
+            showToast("⚠️ OTP has expired. Please request a new code.");
+          }
+        }, 1000);
+      };
+
+      // Resend OTP
+      document.getElementById('resendOtpLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        if (!tempClientData) return;
+        
+        generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+        alert(`[MOCK Verification Resent]: Your new OTP code is: ${generatedOtp}`);
+        startOtpTimer();
+        showToast("📩 New OTP code generated and sent.");
+      });
+
+      // --- Step 2: Handle OTP Submit Verification ---
+      otpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!tempClientData) return;
+
+        // Gather all inputs
+        let enteredOtp = "";
+        otpInputs.forEach(input => {
+          enteredOtp += input.value.trim();
+        });
+
+        if (enteredOtp.length < 6) {
+          showToast("⚠️ Please enter all 6 verification digits.");
+          return;
+        }
+
+        const submitBtn = otpForm.querySelector('[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Verifying...";
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Verify & Log In";
+
+          if (enteredOtp === generatedOtp) {
+            // Log Successful OTP Authentication
+            addHistoryLog(tempClientData.email, tempClientData.phone, "Success (OTP Verified)");
+            
+            // Set login state & onboarding step
+            localStorage.setItem('devstudio_logged_in', 'true');
+            localStorage.setItem('devstudio_client_email', tempClientData.email);
+            localStorage.setItem('devstudio_client_phone', tempClientData.phone);
+            localStorage.setItem('devstudio_onboarding_step', 'welcome');
+
+            showToast("✅ Verification successful! Starting setup wizard...");
+            
+            setTimeout(() => {
+              window.location.href = "welcome.html";
+            }, 1500);
+          } else {
+            // Log Failed Verification Entry
+            addHistoryLog(tempClientData.email, tempClientData.phone, "Failed (Invalid OTP)");
+            showToast("❌ Invalid OTP Code. Please verify your credentials and try again.");
+          }
+        }, 1200);
+      });
+
+      // Social SSO feedback logs
+      document.getElementById('googleLoginBtn').addEventListener('click', () => {
+        showToast("ℹ️ Redirecting to Google account verification...");
+        setTimeout(() => {
+          const fakeEmail = "client.google@gmail.com";
+          const fakePhone = "+91 99999 99999";
+          addHistoryLog(fakeEmail, fakePhone, "Success (Google SSO)");
+          
+          // Set login state & onboarding step
+          localStorage.setItem('devstudio_logged_in', 'true');
+          localStorage.setItem('devstudio_client_email', fakeEmail);
+          localStorage.setItem('devstudio_client_phone', fakePhone);
+          localStorage.setItem('devstudio_onboarding_step', 'welcome');
+
+          showToast("✅ Connected via Google OAuth! Starting setup wizard...");
+          setTimeout(() => {
+            window.location.href = "welcome.html";
+          }, 1500);
+        }, 1000);
+      });
+
+      document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast("ℹ️ Password reset link sent to Gmail address.");
+      });
+    });
+  </script>
+</body>
+</html>

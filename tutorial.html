@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial | DevStudio Onboarding</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Auth & Onboarding Guard
+    if (localStorage.getItem('devstudio_logged_in') !== 'true') {
+      window.location.replace('login.html');
+    } else {
+      const step = localStorage.getItem('devstudio_onboarding_step');
+      if (step && step !== 'tutorial') {
+        if (step === 'welcome') window.location.replace('welcome.html');
+        else if (step === 'profile') window.location.replace('profile-setup.html');
+        else if (step === 'preferences') window.location.replace('preferences.html');
+        else if (step === 'completed') window.location.replace('index.html');
+      }
+    }
+  </script>
+  <style>
+    .onboard-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 1) 90%);
+      padding: 2rem 1rem;
+      font-family: var(--font-sans);
+    }
+    .onboard-card {
+      width: 100%;
+      max-width: 550px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-slate-100);
+      border-radius: 9999px;
+      margin: 1.5rem 0 2rem;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .tutorial-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .tutorial-step {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius-md);
+      background-color: var(--bg-slate-50);
+      border: 1px solid var(--border-color);
+    }
+    .step-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .step-detail h4 {
+      font-size: 0.95rem;
+      color: var(--secondary-color);
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+    .step-detail p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="onboard-body">
+
+  <div class="onboard-card" style="text-align: center;">
+    <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 2rem;">
+      DevStudio<span class="logo-dot"></span>
+    </a>
+    
+    <span class="badge" style="margin-bottom: 1rem; display: inline-flex;">Step 4 of 4: Tutorial</span>
+    
+    <h2 style="font-size: 1.75rem; color: var(--secondary-color); margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+      Quick System Overview
+    </h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">
+      Review this short guide to get the most out of your DevStudio client workspace.
+    </p>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+      <div class="progress-bar" style="width: 100%;"></div>
+    </div>
+
+    <!-- Tutorial List -->
+    <div class="tutorial-steps">
+      <div class="tutorial-step">
+        <div class="step-num">1</div>
+        <div class="step-detail">
+          <h4>Navigate Services &amp; Work</h4>
+          <p>Browse through custom tailored digital designs, development pipelines, and maintenance schedules directly from the top menu.</p>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">2</div>
+        <div class="step-detail">
+          <h4>View Pricing Options</h4>
+          <p>Review and select customized billing tiers matching your scaling constraints with local currency integration.</p>
+        </div>
+      </div>
+      <div class="tutorial-step">
+        <div class="step-num">3</div>
+        <div class="step-detail">
+          <h4>Track Authentication Logs</h4>
+          <p>Access your personal security records containing active login histories, times, and dynamic OTP verification attempts.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="nav-buttons">
+      <button id="prevBtn" class="btn btn-secondary" style="flex: 1; justify-content: center;">
+        Previous
+      </button>
+      <button id="finishBtn" class="btn btn-primary" style="flex: 1.2; justify-content: center; gap: 0.25rem;">
+        Finish Setup
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const prevBtn = document.getElementById('prevBtn');
+    const finishBtn = document.getElementById('finishBtn');
+
+    // Go back to Step 3 Preferences
+    prevBtn.addEventListener('click', () => {
+      localStorage.setItem('devstudio_onboarding_step', 'preferences');
+      window.location.href = "preferences.html";
+    });
+
+    // Complete Onboarding and enter app dashboard
+    finishBtn.addEventListener('click', () => {
+      localStorage.setItem('devstudio_onboarding_step', 'completed');
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

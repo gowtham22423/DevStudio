@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Setup | DevStudio Onboarding</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Auth & Onboarding Guard
+    if (localStorage.getItem('devstudio_logged_in') !== 'true') {
+      window.location.replace('login.html');
+    } else {
+      const step = localStorage.getItem('devstudio_onboarding_step');
+      if (step && step !== 'profile') {
+        if (step === 'welcome') window.location.replace('welcome.html');
+        else if (step === 'preferences') window.location.replace('preferences.html');
+        else if (step === 'tutorial') window.location.replace('tutorial.html');
+        else if (step === 'completed') window.location.replace('index.html');
+      }
+    }
+  </script>
+  <style>
+    .onboard-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 1) 90%);
+      padding: 2rem 1rem;
+      font-family: var(--font-sans);
+    }
+    .onboard-card {
+      width: 100%;
+      max-width: 500px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-slate-100);
+      border-radius: 9999px;
+      margin: 1.5rem 0 2rem;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="onboard-body">
+
+  <div class="onboard-card">
+    <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 2rem;">
+      DevStudio<span class="logo-dot"></span>
+    </a>
+    
+    <span class="badge" style="margin-bottom: 1rem; display: inline-flex;">Step 2 of 4: Profile Setup</span>
+    
+    <h2 style="font-size: 1.75rem; color: var(--secondary-color); margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+      Configure Your Profile
+    </h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">
+      Let's gather some basic client parameters to personalize your dashboard interface.
+    </p>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+      <div class="progress-bar" style="width: 50%;"></div>
+    </div>
+
+    <!-- Form Inputs -->
+    <form id="profileForm" class="contact-form" novalidate>
+      <div class="form-group">
+        <label for="p-name">Client Name *</label>
+        <input type="text" id="p-name" placeholder="e.g. John Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="p-company">Company Name</label>
+        <input type="text" id="p-company" placeholder="e.g. Acme Corp">
+      </div>
+      
+      <!-- Nav Action Buttons -->
+      <div class="nav-buttons">
+        <button type="button" id="prevBtn" class="btn btn-secondary" style="flex: 1; justify-content: center;">
+          Previous
+        </button>
+        <button type="submit" class="btn btn-primary" style="flex: 1.2; justify-content: center; gap: 0.25rem;">
+          Next: Preferences
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('profileForm');
+    const prevBtn = document.getElementById('prevBtn');
+
+    // Back to Step 1 Welcome
+    prevBtn.addEventListener('click', () => {
+      localStorage.setItem('devstudio_onboarding_step', 'welcome');
+      window.location.href = "welcome.html";
+    });
+
+    // Handle form submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const clientName = document.getElementById('p-name').value.trim();
+      
+      if (!clientName) {
+        alert("⚠️ Please enter your name.");
+        return;
+      }
+      
+      // Save data locally
+      localStorage.setItem('devstudio_client_name', clientName);
+      localStorage.setItem('devstudio_client_company', document.getElementById('p-company').value.trim());
+      
+      // Transition to Step 3 Preferences
+      localStorage.setItem('devstudio_onboarding_step', 'preferences');
+      window.location.href = "preferences.html";
+    });
+  </script>
+</body>
+</html>

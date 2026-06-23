@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preferences | DevStudio Onboarding</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Auth & Onboarding Guard
+    if (localStorage.getItem('devstudio_logged_in') !== 'true') {
+      window.location.replace('login.html');
+    } else {
+      const step = localStorage.getItem('devstudio_onboarding_step');
+      if (step && step !== 'preferences') {
+        if (step === 'welcome') window.location.replace('welcome.html');
+        else if (step === 'profile') window.location.replace('profile-setup.html');
+        else if (step === 'tutorial') window.location.replace('tutorial.html');
+        else if (step === 'completed') window.location.replace('index.html');
+      }
+    }
+  </script>
+  <style>
+    .onboard-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, rgba(255, 255, 255, 1) 90%);
+      padding: 2rem 1rem;
+      font-family: var(--font-sans);
+    }
+    .onboard-card {
+      width: 100%;
+      max-width: 500px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background-color: var(--bg-slate-100);
+      border-radius: 9999px;
+      margin: 1.5rem 0 2rem;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+    .option-pill {
+      display: block;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.925rem;
+      color: var(--secondary-color);
+      transition: var(--transition-smooth);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .option-pill:hover {
+      background-color: var(--bg-slate-50);
+      border-color: var(--primary-color);
+    }
+    .option-pill.selected {
+      background-color: rgba(37, 99, 235, 0.06);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .checkbox-icon {
+      color: var(--primary-color);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+    .option-pill.selected .checkbox-icon {
+      opacity: 1;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="onboard-body">
+
+  <div class="onboard-card">
+    <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 2rem;">
+      DevStudio<span class="logo-dot"></span>
+    </a>
+    
+    <span class="badge" style="margin-bottom: 1rem; display: inline-flex;">Step 3 of 4: Preferences</span>
+    
+    <h2 style="font-size: 1.75rem; color: var(--secondary-color); margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+      Select Web Interests
+    </h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem;">
+      Select what services you'd like to prioritize on your workspace menu.
+    </p>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+      <div class="progress-bar" style="width: 75%;"></div>
+    </div>
+
+    <!-- Options List -->
+    <div id="optionsContainer">
+      <div class="option-pill selected" data-value="design">
+        Website Design
+        <svg class="checkbox-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="option-pill selected" data-value="development">
+        Website Development
+        <svg class="checkbox-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="option-pill" data-value="ecommerce">
+        E-Commerce Stores
+        <svg class="checkbox-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="option-pill" data-value="maintenance">
+        Website Maintenance
+        <svg class="checkbox-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="nav-buttons">
+      <button id="prevBtn" class="btn btn-secondary" style="flex: 1; justify-content: center;">
+        Previous
+      </button>
+      <button id="nextBtn" class="btn btn-primary" style="flex: 1.2; justify-content: center; gap: 0.25rem;">
+        Next: View Tutorial
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const optionPills = document.querySelectorAll('.option-pill');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Toggle pill selection
+    optionPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pill.classList.toggle('selected');
+      });
+    });
+
+    // Go back to Step 2 Profile Setup
+    prevBtn.addEventListener('click', () => {
+      localStorage.setItem('devstudio_onboarding_step', 'profile');
+      window.location.href = "profile-setup.html";
+    });
+
+    // Go to Step 4 Tutorial
+    nextBtn.addEventListener('click', () => {
+      const selectedPreferences = [];
+      document.querySelectorAll('.option-pill.selected').forEach(pill => {
+        selectedPreferences.push(pill.getAttribute('data-value'));
+      });
+
+      localStorage.setItem('devstudio_client_preferences', JSON.stringify(selectedPreferences));
+      localStorage.setItem('devstudio_onboarding_step', 'tutorial');
+      window.location.href = "tutorial.html";
+    });
+  </script>
+</body>
+</html>

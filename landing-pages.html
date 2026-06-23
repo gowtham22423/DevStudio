@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Pages Design & Development | DevStudio</title>
+  <meta name="description" content="High-converting single-page layouts designed to drive sales, capture leads, and support advertising campaigns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    if (localStorage.getItem('devstudio_logged_in') !== 'true') {
+      window.location.replace('login.html');
+    } else {
+      const step = localStorage.getItem('devstudio_onboarding_step');
+      if (step && step !== 'completed') {
+        if (step === 'welcome') window.location.replace('welcome.html');
+        else if (step === 'profile') window.location.replace('profile-setup.html');
+        else if (step === 'preferences') window.location.replace('preferences.html');
+        else if (step === 'tutorial') window.location.replace('tutorial.html');
+      }
+    }
+  </script>
+  <style>
+    .service-hero {
+      padding: 10rem 0 6rem;
+      background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.06), transparent 50%);
+    }
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .feature-list {
+      list-style: none;
+      margin: 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .feature-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-weight: 500;
+    }
+    .feature-list-icon {
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+    @media (max-width: 968px) {
+      .service-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header class="scrolled">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo">
+        DevStudio<span class="logo-dot"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#services" class="active">Services</a></li>
+        <li><a href="index.html#portfolio">Work</a></li>
+        <li><a href="index.html#why-choose-me">Why Me</a></li>
+        <li><a href="index.html#process">Process</a></li>
+        <li><a href="index.html#testimonials">Reviews</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="login.html" class="nav-login-link">Login</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Service Hero Section -->
+  <section class="service-hero">
+    <div class="container">
+      <a href="index.html#services" class="btn-link" style="margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Services
+      </a>
+      <div class="service-detail-grid">
+        <div>
+          <span class="badge">Lead Generation</span>
+          <h1 style="font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Landing Pages Services</h1>
+          <p class="section-desc" style="margin-bottom: 2rem; font-size: 1.2rem; line-height: 1.7;">
+            Need to turn ad clicks into customers? I create high-converting landing pages tailored to specific target audiences. Through strong visual hierarchy, structured benefits copywriting, and streamlined contact forms, we maximize your advertising ROI.
+          </p>
+
+          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">What You Get with this Service:</h3>
+          <ul class="feature-list">
+            <li class="feature-list-item">
+              <span class="feature-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <div>
+                <strong>A/B Test Ready Structures</strong>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Layouts organized for easy element testing and variations.</p>
+              </div>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <div>
+                <strong>Fast Load Speeds</strong>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Fewer dependencies and lightweight builds that keep mobile search users engaged.</p>
+              </div>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <div>
+                <strong>Analytics Integrations</strong>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Google Analytics, Facebook Pixel, and tag manager code injection options.</p>
+              </div>
+            </li>
+            <li class="feature-list-item">
+              <span class="feature-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <div>
+                <strong>Clean Forms & Autoresponders</strong>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Forms connected straight to your Mailchimp, HubSpot, or email dashboards.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sidebar Inquiry Form -->
+        <div class="contact-card" style="position: sticky; top: 6rem;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Request Landing Page</h3>
+          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">Send over your project details to get a free custom quote.</p>
+          <form id="serviceForm" class="contact-form" novalidate>
+            <input type="hidden" name="service" value="Landing Pages">
+            <div class="form-group">
+              <label for="s-name">Full Name *</label>
+              <input type="text" id="s-name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="s-email">Email Address *</label>
+              <input type="email" id="s-email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="s-phone">Phone Number</label>
+              <input type="tel" id="s-phone" name="phone" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+              <label for="s-details">Campaign Goal / Product Details *</label>
+              <textarea id="s-details" name="details" placeholder="What product are you advertising? What actions should visitors take (Signup, Call, Download)?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit" style="width: 100%;">Get Landing Page Quote</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Toast Alert Component -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive">
+    <span class="toast-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </span>
+    <span class="toast-text">Message sent successfully!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-bottom" style="border-top: none; padding-top: 0;">
+      <p>© 2026 DevStudio. All Rights Reserved.</p>
+      <p>Designed for High Conversion & Performance.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('serviceForm');
+      const toast = document.getElementById('toast');
+
+      const showToast = (message) => {
+        const toastText = toast.querySelector('.toast-text');
+        toastText.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = form.querySelector('[name="name"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const details = form.querySelector('[name="details"]').value.trim();
+
+        if (!name || !email || !details) {
+          showToast("⚠️ Please fill in all required fields.");
+          return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showToast("⚠️ Please enter a valid email address.");
+          return;
+        }
+
+        const submitBtn = form.querySelector('[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting details...";
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Get Landing Page Quote";
+          showToast("✅ Thank you! Your landing page quote request has been sent.");
+          form.reset();
+        }, 1500);
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
