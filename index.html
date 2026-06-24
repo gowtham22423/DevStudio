@@ -5,20 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevStudio — Premium Web Design & Development</title>
 
-  <!-- SEO Meta Tags -->
+  <!-- SEO -->
   <meta name="description" content="DevStudio crafts fast, modern, SEO-optimized custom websites that turn visitors into loyal customers. Premium web design and development.">
   <meta name="keywords" content="Freelance Web Developer, Custom Website Design, E-commerce stores, Landing pages, Website redesign, business website">
-  <meta name="author" content="DevStudio">
   <meta property="og:title" content="DevStudio — Premium Web Design & Development">
   <meta property="og:description" content="Fast, modern, and SEO-optimized custom websites designed to convert visitors into loyal clients.">
   <meta property="og:type" content="website">
 
-  <!-- Premium Fonts: Fraunces (display serif) + Space Grotesk (grotesk UI) -->
+  <!-- Fonts: Bricolage Grotesque (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400&display=swap" rel="stylesheet">
 
-  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Auth Guard -->
@@ -38,253 +36,210 @@
 </head>
 <body>
 
-  <!-- Page load curtain -->
-  <div class="page-loader" id="pageLoader">
-    <span class="page-loader-text">DevStudio</span>
-  </div>
-
   <!-- Header -->
   <header id="header">
     <div class="shell nav-wrapper">
-      <a href="index.html#hero" class="logo" id="logoLink">DevStudio<span class="logo-mark">®</span></a>
+      <a href="#hero" class="logo" data-scroll>DevStudio<span class="logo-dot"></span></a>
       <nav class="nav-links" id="navLinks">
-        <a href="index.html#work">Work</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#process">Process</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="login.html" class="nav-login-link">Login</a>
-        <a href="#contact" class="nav-contact trigger-modal" data-cta="Get Free Consultation">Contact <span class="arrow">¬</span></a>
+        <a href="#work" data-scroll>Work</a>
+        <a href="#services" data-scroll>Services</a>
+        <a href="#process" data-scroll>Process</a>
+        <a href="#pricing" data-scroll>Pricing</a>
+        <a href="#about" data-scroll>About</a>
+        <a href="#faq" data-scroll>FAQ</a>
       </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-        <span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="#contact" class="btn btn-primary nav-cta trigger-modal" data-cta="Get Free Consultation">Get Free Consultation</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu"><span></span><span></span></button>
     </div>
   </header>
 
   <!-- Hero -->
   <section id="hero" class="hero">
-    <div class="shell">
-      <div class="hero-meta">
-        <span class="eyebrow"><span class="status-dot"></span> Open for new projects — 2026</span>
+    <div class="shell hero-inner">
+      <span class="pill reveal"><span class="pill-dot"></span> Open for new projects — 2026</span>
+      <h1 class="hero-title reveal">Professional websites that help businesses <span class="accent-text">grow.</span></h1>
+      <p class="hero-sub reveal">I design and develop fast, modern, SEO-friendly websites that help businesses attract customers and increase revenue.</p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary btn-lg trigger-modal" data-cta="Get Free Consultation">Get Free Consultation</a>
+        <a href="#work" class="btn btn-ghost btn-lg" data-scroll>View My Work</a>
       </div>
-      <h1 class="hero-title">
-        <span class="line"><span class="line-inner">Professional websites</span></span>
-        <span class="line"><span class="line-inner">that help businesses</span></span>
-        <span class="line"><span class="line-inner"><em>grow.</em></span></span>
-      </h1>
-      <div class="hero-foot">
-        <p class="hero-lede reveal">I design and develop fast, modern, SEO-friendly websites that help businesses attract customers and increase revenue.</p>
-        <a href="#work" class="scroll-cue reveal" data-scroll>
-          <span>Selected work</span>
-          <span class="arrow-down">¬</span>
-        </a>
+      <div class="hero-trust reveal">
+        <span>Responsive Design</span><span class="trust-dot">•</span>
+        <span>Fast Delivery</span><span class="trust-dot">•</span>
+        <span>SEO Optimized</span><span class="trust-dot">•</span>
+        <span>Ongoing Support</span>
+      </div>
+    </div>
+
+    <!-- Scrolling work gallery -->
+    <div class="gallery reveal" aria-label="Featured work">
+      <div class="gallery-track" id="galleryTrack">
+        <a href="website-design.html" class="g-card g-card-img"><img src="restaurant_mockup.png" alt="Restaurant Website" loading="lazy"><span class="g-card-label">Restaurant Website <span class="g-card-arrow">↗</span></span></a>
+        <a href="website-development.html" class="g-card g-card-img"><img src="real_estate_mockup.png" alt="Real Estate Website" loading="lazy"><span class="g-card-label">Real Estate Website <span class="g-card-arrow">↗</span></span></a>
+        <a href="landing-pages.html" class="g-card g-card-c1"><span class="g-card-tag">Wellness</span><span class="g-card-name">Pulse Fitness</span><span class="g-card-arrow">↗</span></a>
+        <a href="ecommerce-stores.html" class="g-card g-card-c2"><span class="g-card-tag">Retail</span><span class="g-card-name">Luxe Wardrobe</span><span class="g-card-arrow">↗</span></a>
+        <a href="website-development.html" class="g-card g-card-img"><img src="saas_mockup.png" alt="SaaS Dashboard" loading="lazy"><span class="g-card-label">SaaS Dashboard <span class="g-card-arrow">↗</span></span></a>
+        <a href="website-redesign.html" class="g-card g-card-c3"><span class="g-card-tag">Healthcare</span><span class="g-card-name">Apex Dental</span><span class="g-card-arrow">↗</span></a>
+        <!-- duplicate set for seamless marquee -->
+        <a href="website-design.html" class="g-card g-card-img" aria-hidden="true" tabindex="-1"><img src="restaurant_mockup.png" alt="" loading="lazy"><span class="g-card-label">Restaurant Website <span class="g-card-arrow">↗</span></span></a>
+        <a href="website-development.html" class="g-card g-card-img" aria-hidden="true" tabindex="-1"><img src="real_estate_mockup.png" alt="" loading="lazy"><span class="g-card-label">Real Estate Website <span class="g-card-arrow">↗</span></span></a>
+        <a href="landing-pages.html" class="g-card g-card-c1" aria-hidden="true" tabindex="-1"><span class="g-card-tag">Wellness</span><span class="g-card-name">Pulse Fitness</span><span class="g-card-arrow">↗</span></a>
       </div>
     </div>
   </section>
-
-  <!-- Marquee strip -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Strategy</span><span class="dot">•</span><span>Design</span><span class="dot">•</span><span>Development</span><span class="dot">•</span><span>SEO</span><span class="dot">•</span><span>E-Commerce</span><span class="dot">•</span><span>Branding</span><span class="dot">•</span>
-      <span>Strategy</span><span class="dot">•</span><span>Design</span><span class="dot">•</span><span>Development</span><span class="dot">•</span><span>SEO</span><span class="dot">•</span><span>E-Commerce</span><span class="dot">•</span><span>Branding</span><span class="dot">•</span>
-    </div>
-  </div>
 
   <!-- Work / Portfolio -->
   <section id="work" class="section work">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">01 — Selected Work</span>
+        <span class="kicker">Selected work</span>
         <h2 class="section-title">Recent projects built to perform.</h2>
+        <p class="section-sub">Take a look at some of my recent work built to optimize lead generation, increase performance, and elevate digital presence.</p>
       </div>
-
-      <div class="work-list">
-        <!-- Project 1 -->
-        <a href="website-design.html" class="work-row reveal">
-          <span class="work-no">01<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">Restaurant Website</h3>
-            <p class="work-desc">A clean culinary showcase featuring an interactive reservation engine, digital menu manager, and social integrations.</p>
+      <div class="work-grid">
+        <a href="website-design.html" class="work-card reveal">
+          <div class="work-card-media"><img src="restaurant_mockup.png" alt="Restaurant Website Mockup" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">Restaurant</span><span class="work-card-arrow">↗</span></div>
+            <h3>Restaurant Website</h3>
+            <p>A clean culinary showcase featuring an interactive reservation engine, digital menu manager, and social integrations.</p>
+            <div class="tags"><span>React</span><span>CSS Grid</span><span>GSAP</span></div>
           </div>
-          <div class="work-tags">
-            <span>React</span><span>CSS Grid</span><span>GSAP</span>
-          </div>
-          <span class="work-cat">Restaurant</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media"><img src="restaurant_mockup.png" alt="Restaurant Website Mockup" loading="lazy"></div>
         </a>
-
-        <!-- Project 2 -->
-        <a href="website-development.html" class="work-row reveal">
-          <span class="work-no">02<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">Real Estate Website</h3>
-            <p class="work-desc">Searchable directory with interactive map search, real-time consultation scheduling, and high-quality photography carousel layout.</p>
+        <a href="website-development.html" class="work-card reveal">
+          <div class="work-card-media"><img src="real_estate_mockup.png" alt="Real Estate Listings Platform Mockup" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">Real Estate</span><span class="work-card-arrow">↗</span></div>
+            <h3>Real Estate Website</h3>
+            <p>Searchable directory with interactive map search, real-time consultation scheduling, and high-quality photography carousel layout.</p>
+            <div class="tags"><span>NextJS</span><span>Mapbox</span><span>Flexbox</span></div>
           </div>
-          <div class="work-tags">
-            <span>NextJS</span><span>Mapbox</span><span>Flexbox</span>
-          </div>
-          <span class="work-cat">Real Estate</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media"><img src="real_estate_mockup.png" alt="Real Estate Listings Platform Mockup" loading="lazy"></div>
         </a>
-
-        <!-- Project 3 -->
-        <a href="landing-pages.html" class="work-row reveal">
-          <span class="work-no">03<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">Fitness Landing Page</h3>
-            <p class="work-desc">High-performance landing page geared to maximize gym membership signups, class bookings, and premium coaching programs.</p>
+        <a href="landing-pages.html" class="work-card reveal">
+          <div class="work-card-media work-card-grad grad-1"><span>Pulse Fitness</span></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">Wellness</span><span class="work-card-arrow">↗</span></div>
+            <h3>Fitness Landing Page</h3>
+            <p>High-performance landing page geared to maximize gym membership signups, class bookings, and premium coaching programs.</p>
+            <div class="tags"><span>HTML5</span><span>Vanilla CSS</span><span>AOS</span></div>
           </div>
-          <div class="work-tags">
-            <span>HTML5</span><span>Vanilla CSS</span><span>AOS</span>
-          </div>
-          <span class="work-cat">Wellness</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media work-media-text"><span>Pulse Fitness</span></div>
         </a>
-
-        <!-- Project 4 -->
-        <a href="ecommerce-stores.html" class="work-row reveal">
-          <span class="work-no">04<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">Ecommerce Store</h3>
-            <p class="work-desc">Fast storefront featuring responsive product catalog, dynamic cart interface, Stripe checkout integration, and invoice generation.</p>
+        <a href="ecommerce-stores.html" class="work-card reveal">
+          <div class="work-card-media work-card-grad grad-2"><span>Luxe Wardrobe</span></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">Retail</span><span class="work-card-arrow">↗</span></div>
+            <h3>Ecommerce Store</h3>
+            <p>Fast storefront featuring responsive product catalog, dynamic cart interface, Stripe checkout integration, and invoice generation.</p>
+            <div class="tags"><span>React</span><span>Stripe SDK</span><span>Redux</span></div>
           </div>
-          <div class="work-tags">
-            <span>React</span><span>Stripe SDK</span><span>Redux</span>
-          </div>
-          <span class="work-cat">Retail</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media work-media-text"><span>Luxe Wardrobe</span></div>
         </a>
-
-        <!-- Project 5 -->
-        <a href="website-development.html" class="work-row reveal">
-          <span class="work-no">05<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">SaaS Dashboard</h3>
-            <p class="work-desc">A complex analytical board with interactive charts, user permissions settings, drag-and-drop report layout, and dark mode.</p>
+        <a href="website-development.html" class="work-card reveal">
+          <div class="work-card-media"><img src="saas_mockup.png" alt="SaaS Analytical Dashboard Mockup" loading="lazy"></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">SaaS</span><span class="work-card-arrow">↗</span></div>
+            <h3>SaaS Dashboard</h3>
+            <p>A complex analytical board with interactive charts, user permissions settings, drag-and-drop report layout, and dark mode.</p>
+            <div class="tags"><span>VueJS</span><span>ChartJS</span><span>Tailwind</span></div>
           </div>
-          <div class="work-tags">
-            <span>VueJS</span><span>ChartJS</span><span>Tailwind</span>
-          </div>
-          <span class="work-cat">SaaS</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media"><img src="saas_mockup.png" alt="SaaS Analytical Dashboard Mockup" loading="lazy"></div>
         </a>
-
-        <!-- Project 6 -->
-        <a href="website-redesign.html" class="work-row reveal">
-          <span class="work-no">06<span class="work-no-total">/06</span></span>
-          <div class="work-main">
-            <h3 class="work-title">Local Business Website</h3>
-            <p class="work-desc">Fully optimized local search platform highlighting services, interactive team profiles, client reviews, and direct email lead captures.</p>
+        <a href="website-redesign.html" class="work-card reveal">
+          <div class="work-card-media work-card-grad grad-3"><span>Apex Dental Clinic</span></div>
+          <div class="work-card-body">
+            <div class="work-card-top"><span class="work-card-cat">Healthcare</span><span class="work-card-arrow">↗</span></div>
+            <h3>Local Business Website</h3>
+            <p>Fully optimized local search platform highlighting services, interactive team profiles, client reviews, and direct email lead captures.</p>
+            <div class="tags"><span>WordPress</span><span>Elementor</span><span>Yoast SEO</span></div>
           </div>
-          <div class="work-tags">
-            <span>WordPress</span><span>Elementor</span><span>Yoast SEO</span>
-          </div>
-          <span class="work-cat">Healthcare</span>
-          <span class="work-arrow">¬</span>
-          <div class="work-media work-media-text"><span>Apex Dental Clinic</span></div>
         </a>
       </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" class="section services">
+  <section id="services" class="section services section-tint">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">02 — Services</span>
+        <span class="kicker">Services</span>
         <h2 class="section-title">End-to-end web design &amp; development.</h2>
+        <p class="section-sub">I provide end-to-end web design and development solutions tailored to grow your business, increase brand trust, and convert visitors into active customers.</p>
       </div>
-      <div class="services-list">
-        <a href="website-design.html" class="service-row reveal">
-          <span class="service-no">01</span>
-          <h3 class="service-name">Website Design</h3>
-          <p class="service-desc">Custom modern UI/UX designs crafted specifically for your target audience and tailored to achieve your unique business goals.</p>
-          <span class="service-arrow">¬</span>
+      <div class="services-grid">
+        <a href="website-design.html" class="service-card reveal">
+          <span class="service-num">01</span>
+          <h3>Website Design</h3>
+          <p>Custom modern UI/UX designs crafted specifically for your target audience and tailored to achieve your unique business goals.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
-        <a href="website-development.html" class="service-row reveal">
-          <span class="service-no">02</span>
-          <h3 class="service-name">Website Development</h3>
-          <p class="service-desc">Fast-loading, clean-coded, fully responsive, and highly scalable websites built using the latest web standards.</p>
-          <span class="service-arrow">¬</span>
+        <a href="website-development.html" class="service-card reveal">
+          <span class="service-num">02</span>
+          <h3>Website Development</h3>
+          <p>Fast-loading, clean-coded, fully responsive, and highly scalable websites built using the latest web standards.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
-        <a href="landing-pages.html" class="service-row reveal">
-          <span class="service-no">03</span>
-          <h3 class="service-name">Landing Pages</h3>
-          <p class="service-desc">High-converting single-page campaigns built with crisp messaging, modern structures, and optimal performance for paid ads.</p>
-          <span class="service-arrow">¬</span>
+        <a href="landing-pages.html" class="service-card reveal">
+          <span class="service-num">03</span>
+          <h3>Landing Pages</h3>
+          <p>High-converting single-page campaigns built with crisp messaging, modern structures, and optimal performance for paid ads.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
-        <a href="ecommerce-stores.html" class="service-row reveal">
-          <span class="service-no">04</span>
-          <h3 class="service-name">E-Commerce Stores</h3>
-          <p class="service-desc">Fully secure online stores featuring smooth payment gateway integrations, seamless checkout funnels, and easy product managers.</p>
-          <span class="service-arrow">¬</span>
+        <a href="ecommerce-stores.html" class="service-card reveal">
+          <span class="service-num">04</span>
+          <h3>E-Commerce Stores</h3>
+          <p>Fully secure online stores featuring smooth payment gateway integrations, seamless checkout funnels, and easy product managers.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
-        <a href="website-redesign.html" class="service-row reveal">
-          <span class="service-no">05</span>
-          <h3 class="service-name">Website Redesign</h3>
-          <p class="service-desc">Transform your outdated, slow, or low-performing website into a premium, modern experience that captures attention and retains clients.</p>
-          <span class="service-arrow">¬</span>
+        <a href="website-redesign.html" class="service-card reveal">
+          <span class="service-num">05</span>
+          <h3>Website Redesign</h3>
+          <p>Transform your outdated, slow, or low-performing website into a premium, modern experience that captures attention and retains clients.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
-        <a href="website-maintenance.html" class="service-row reveal">
-          <span class="service-no">06</span>
-          <h3 class="service-name">Website Maintenance</h3>
-          <p class="service-desc">Rest easy with regular updates, scheduled secure database backups, malware scans, performance checks, and ongoing support.</p>
-          <span class="service-arrow">¬</span>
+        <a href="website-maintenance.html" class="service-card reveal">
+          <span class="service-num">06</span>
+          <h3>Website Maintenance</h3>
+          <p>Rest easy with regular updates, scheduled secure database backups, malware scans, performance checks, and ongoing support.</p>
+          <span class="service-link">Learn more <span class="arrow">↗</span></span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Me -->
+  <!-- Why -->
   <section id="why" class="section why">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">03 — Why work with me</span>
+        <span class="kicker">Why work with me</span>
         <h2 class="section-title">Design excellence, business results.</h2>
+        <p class="section-sub">I bridge the gap between design excellence and business results, building solid partnerships centered around growth.</p>
       </div>
       <div class="why-grid">
-        <div class="why-item reveal">
-          <h3>Modern Design</h3>
-          <p>Beautiful, clutter-free layouts built to reflect authority and command customer trust.</p>
-        </div>
-        <div class="why-item reveal">
-          <h3>Fast Performance</h3>
-          <p>Websites optimized for speed. Low page-load sizes that reduce bounce rates instantly.</p>
-        </div>
-        <div class="why-item reveal">
-          <h3>SEO Friendly</h3>
-          <p>Pre-configured schema metrics, meta codes, and semantic builds to rank higher in search engines.</p>
-        </div>
-        <div class="why-item reveal">
-          <h3>Reliable Support</h3>
-          <p>Continuous support and quick response assistance post-launch. Always just an email away.</p>
-        </div>
+        <div class="why-card reveal"><span class="why-emoji">✦</span><h3>Modern Design</h3><p>Beautiful, clutter-free layouts built to reflect authority and command customer trust.</p></div>
+        <div class="why-card reveal"><span class="why-emoji">⚡</span><h3>Fast Performance</h3><p>Websites optimized for speed. Low page-load sizes that reduce bounce rates instantly.</p></div>
+        <div class="why-card reveal"><span class="why-emoji">◎</span><h3>SEO Friendly</h3><p>Pre-configured schema metrics, meta codes, and semantic builds to rank higher in search engines.</p></div>
+        <div class="why-card reveal"><span class="why-emoji">♡</span><h3>Reliable Support</h3><p>Continuous support and quick response assistance post-launch. Always just an email away.</p></div>
       </div>
     </div>
   </section>
 
   <!-- Process -->
-  <section id="process" class="section process">
+  <section id="process" class="section process section-tint">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">04 — Process</span>
+        <span class="kicker">Process</span>
         <h2 class="section-title">A transparent, structured workflow.</h2>
+        <p class="section-sub">From initial idea to launch and beyond, I follow a transparent, structured workflow designed to keep projects running efficiently.</p>
       </div>
-      <div class="process-list">
-        <div class="process-row reveal"><span class="process-no">01</span><h3>Discovery Call</h3><p>Aligning on goals &amp; scope</p></div>
-        <div class="process-row reveal"><span class="process-no">02</span><h3>Planning</h3><p>Creating site-map &amp; strategy</p></div>
-        <div class="process-row reveal"><span class="process-no">03</span><h3>Design</h3><p>UI prototypes &amp; branding</p></div>
-        <div class="process-row reveal"><span class="process-no">04</span><h3>Development</h3><p>Writing high-quality code</p></div>
-        <div class="process-row reveal"><span class="process-no">05</span><h3>Testing</h3><p>Optimizing speed &amp; response</p></div>
-        <div class="process-row reveal"><span class="process-no">06</span><h3>Launch</h3><p>Deploying to live servers</p></div>
-        <div class="process-row reveal"><span class="process-no">07</span><h3>Support</h3><p>Maintenance &amp; performance</p></div>
+      <div class="process-grid">
+        <div class="process-card reveal"><span class="process-num">01</span><h3>Discovery Call</h3><p>Aligning on goals &amp; scope</p></div>
+        <div class="process-card reveal"><span class="process-num">02</span><h3>Planning</h3><p>Creating site-map &amp; strategy</p></div>
+        <div class="process-card reveal"><span class="process-num">03</span><h3>Design</h3><p>UI prototypes &amp; branding</p></div>
+        <div class="process-card reveal"><span class="process-num">04</span><h3>Development</h3><p>Writing high-quality code</p></div>
+        <div class="process-card reveal"><span class="process-num">05</span><h3>Testing</h3><p>Optimizing speed &amp; response</p></div>
+        <div class="process-card reveal"><span class="process-num">06</span><h3>Launch</h3><p>Deploying to live servers</p></div>
+        <div class="process-card reveal"><span class="process-num">07</span><h3>Support</h3><p>Maintenance &amp; performance</p></div>
       </div>
     </div>
   </section>
@@ -293,59 +248,50 @@
   <section id="pricing" class="section pricing">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">05 — Pricing</span>
+        <span class="kicker">Pricing</span>
         <h2 class="section-title">Built for growth. Zero hidden fees.</h2>
+        <p class="section-sub">Get the best value pricing with zero hidden fees. Choose a plan that fits your business stage or request a fully customized solution.</p>
       </div>
       <div class="pricing-grid">
-        <!-- Starter -->
-        <div class="price-card reveal">
-          <div class="price-card-head">
-            <h3>Starter</h3>
-            <p class="price-card-desc">Perfect for small businesses or simple personal portfolios.</p>
-          </div>
-          <div class="price-amount"><span class="currency">₹</span><span class="price">7,999</span><span class="period">/one-time</span></div>
-          <ul class="price-features">
+        <div class="plan reveal">
+          <h3 class="plan-name">Starter</h3>
+          <p class="plan-desc">Perfect for small businesses or simple personal portfolios.</p>
+          <div class="plan-price"><span class="plan-cur">₹</span><span class="plan-amt">7,999</span><span class="plan-per">/one-time</span></div>
+          <a href="#contact" class="btn btn-dark plan-btn trigger-modal" data-cta="Order Starter Plan (₹7,999)">Get Started</a>
+          <ul class="plan-feats">
             <li>1-Page Conversion Layout</li>
             <li>Fully Responsive UI Design</li>
             <li>Basic SEO Configuration</li>
             <li>1 Secure Contact Form</li>
             <li>30 Days Post-Launch Support</li>
-            <li class="excluded">E-Commerce Cart Integration</li>
-            <li class="excluded">Advanced Analytical Pixels</li>
-            <li class="excluded">Dynamic database features</li>
+            <li class="x">E-Commerce Cart Integration</li>
+            <li class="x">Advanced Analytical Pixels</li>
+            <li class="x">Dynamic database features</li>
           </ul>
-          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Starter Plan (₹7,999)">Get Started <span class="arrow">¬</span></a>
         </div>
-
-        <!-- Growth -->
-        <div class="price-card price-card-featured reveal">
-          <span class="price-ribbon">Best Value</span>
-          <div class="price-card-head">
-            <h3>Growth</h3>
-            <p class="price-card-desc">Ideal for professional service brands and small agencies.</p>
-          </div>
-          <div class="price-amount"><span class="currency">₹</span><span class="price">14,999</span><span class="period">/one-time</span></div>
-          <ul class="price-features">
+        <div class="plan plan-featured reveal">
+          <span class="plan-badge">Best Value</span>
+          <h3 class="plan-name">Growth</h3>
+          <p class="plan-desc">Ideal for professional service brands and small agencies.</p>
+          <div class="plan-price"><span class="plan-cur">₹</span><span class="plan-amt">14,999</span><span class="plan-per">/one-time</span></div>
+          <a href="#contact" class="btn btn-primary plan-btn trigger-modal" data-cta="Order Growth Plan (₹14,999)">Order Now</a>
+          <ul class="plan-feats">
             <li>Up to 5 Responsive Pages</li>
             <li>Premium Custom UI Design</li>
             <li>Advanced SEO Keyword Setup</li>
             <li>3 Interactive Lead Forms</li>
             <li>Micro-Animations &amp; Interaction</li>
             <li>60 Days Priority Support</li>
-            <li class="excluded">E-Commerce Cart / Checkout</li>
-            <li class="excluded">Custom APIs &amp; Databases</li>
+            <li class="x">E-Commerce Cart / Checkout</li>
+            <li class="x">Custom APIs &amp; Databases</li>
           </ul>
-          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Growth Plan (₹14,999)">Order Now <span class="arrow">¬</span></a>
         </div>
-
-        <!-- Enterprise -->
-        <div class="price-card reveal">
-          <div class="price-card-head">
-            <h3>Enterprise</h3>
-            <p class="price-card-desc">Best for e-commerce, custom apps &amp; SaaS portals.</p>
-          </div>
-          <div class="price-amount"><span class="currency">₹</span><span class="price">24,999</span><span class="period">/one-time</span></div>
-          <ul class="price-features">
+        <div class="plan reveal">
+          <h3 class="plan-name">Enterprise</h3>
+          <p class="plan-desc">Best for e-commerce, custom apps &amp; SaaS portals.</p>
+          <div class="plan-price"><span class="plan-cur">₹</span><span class="plan-amt">24,999</span><span class="plan-per">/one-time</span></div>
+          <a href="#contact" class="btn btn-dark plan-btn trigger-modal" data-cta="Order Enterprise Plan (₹24,999)">Get Custom Quote</a>
+          <ul class="plan-feats">
             <li>Unlimited Dynamic Pages</li>
             <li>Full E-Commerce Cart &amp; Stripe</li>
             <li>Custom API/Database Portal</li>
@@ -353,101 +299,83 @@
             <li>1-Year Premium Maintenance</li>
             <li class="note">Includes everything (No exclusions).</li>
           </ul>
-          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Enterprise Plan (₹24,999)">Get Custom Quote <span class="arrow">¬</span></a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="section testimonials">
+  <section id="testimonials" class="section testimonials section-tint">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">06 — Words from clients</span>
+        <span class="kicker">Words from clients</span>
+        <h2 class="section-title">What clients say.</h2>
+        <p class="section-sub">Hear directly from some of the businesses and startup founders I've helped establish online presence.</p>
       </div>
-      <div class="quotes">
-        <blockquote class="quote reveal">
-          <p>“The landing page developed for Pulse Fitness exceeded all our conversion goals. We saw a 35% increase in membership registrations in the first month alone. Extremely professional and responsive workflow throughout!”</p>
-          <footer><span class="quote-name">John Doe</span><span class="quote-role">Founder, Pulse Fitness</span></footer>
-        </blockquote>
-        <blockquote class="quote reveal">
-          <p>“Redesigning our local real estate listings portal was a daunting task. DevStudio simplified the whole sitemap layout, optimized listing load speed to near-instant, and integrated scheduling smoothly.”</p>
-          <footer><span class="quote-name">Sarah Smith</span><span class="quote-role">CEO, Apex Properties</span></footer>
-        </blockquote>
-        <blockquote class="quote reveal">
-          <p>“Our online boutique sales doubled right after migration to the custom e-commerce solution. The Stripe payment integration works flawlessly and checkouts are extremely fast.”</p>
-          <footer><span class="quote-name">Emily Lee</span><span class="quote-role">Director, Luxe Wardrobe</span></footer>
-        </blockquote>
+      <div class="testi-grid">
+        <figure class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The landing page developed for Pulse Fitness exceeded all our conversion goals. We saw a 35% increase in membership registrations in the first month alone. Extremely professional and responsive workflow throughout!"</blockquote>
+          <figcaption><span class="testi-avatar">JD</span><span><strong>John Doe</strong>Founder, Pulse Fitness</span></figcaption>
+        </figure>
+        <figure class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Redesigning our local real estate listings portal was a daunting task. DevStudio simplified the whole sitemap layout, optimized listing load speed to near-instant, and integrated scheduling smoothly."</blockquote>
+          <figcaption><span class="testi-avatar">SS</span><span><strong>Sarah Smith</strong>CEO, Apex Properties</span></figcaption>
+        </figure>
+        <figure class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Our online boutique sales doubled right after migration to the custom e-commerce solution. The Stripe payment integration works flawlessly and checkouts are extremely fast."</blockquote>
+          <figcaption><span class="testi-avatar">EL</span><span><strong>Emily Lee</strong>Director, Luxe Wardrobe</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
   <!-- About / Stats -->
   <section id="about" class="section about">
-    <div class="shell">
-      <div class="section-head reveal">
-        <span class="section-index">07 — About</span>
+    <div class="shell about-inner">
+      <div class="about-copy reveal">
+        <span class="kicker">About</span>
         <h2 class="section-title">I build digital products that drive growth.</h2>
+        <p class="section-sub">I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers.</p>
+        <a href="#contact" class="btn btn-primary btn-lg trigger-modal" data-cta="Get Free Consultation">Start a project</a>
       </div>
-      <p class="about-lede reveal">I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers.</p>
-      <div class="stats">
-        <div class="stat reveal">
-          <span class="stat-number" data-target="50" data-suffix="+">0</span>
-          <span class="stat-label">Projects Completed</span>
-        </div>
-        <div class="stat reveal">
-          <span class="stat-number" data-target="20" data-suffix="+">0</span>
-          <span class="stat-label">Happy Clients</span>
-        </div>
-        <div class="stat reveal">
-          <span class="stat-number" data-target="99" data-suffix="%">0</span>
-          <span class="stat-label">Satisfaction Rate</span>
-        </div>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-num" data-target="50" data-suffix="+">0</span><span class="stat-label">Projects Completed</span></div>
+        <div class="stat"><span class="stat-num" data-target="20" data-suffix="+">0</span><span class="stat-label">Happy Clients</span></div>
+        <div class="stat"><span class="stat-num" data-target="99" data-suffix="%">0</span><span class="stat-label">Satisfaction Rate</span></div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="section faq">
+  <section id="faq" class="section faq section-tint">
     <div class="shell">
       <div class="section-head reveal">
-        <span class="section-index">08 — FAQ</span>
+        <span class="kicker">FAQ</span>
         <h2 class="section-title">Frequently asked questions.</h2>
+        <p class="section-sub">Got questions about my web services? Find quick responses to the questions I receive most often.</p>
       </div>
       <div class="faq-list">
         <div class="faq-item reveal">
-          <button class="faq-trigger" aria-expanded="false">
-            <span>How long does a website take to build?</span>
-            <span class="faq-sign">+</span>
-          </button>
+          <button class="faq-trigger" aria-expanded="false"><span>How long does a website take to build?</span><span class="faq-sign">+</span></button>
           <div class="faq-content"><p>Typically, a landing page takes about 1-2 weeks, while a full multipage website or custom e-commerce portal ranges between 3-6 weeks depending on integration complexity. We establish a clear milestone timeline during discovery.</p></div>
         </div>
         <div class="faq-item reveal">
-          <button class="faq-trigger" aria-expanded="false">
-            <span>Do you provide hosting?</span>
-            <span class="faq-sign">+</span>
-          </button>
+          <button class="faq-trigger" aria-expanded="false"><span>Do you provide hosting?</span><span class="faq-sign">+</span></button>
           <div class="faq-content"><p>I guide you in picking optimal, highly secure hosting plans (Netlify, Vercel, Hostinger, AWS). I can handle setup configuration, custom nameservers, and cloud migration for a seamless launch.</p></div>
         </div>
         <div class="faq-item reveal">
-          <button class="faq-trigger" aria-expanded="false">
-            <span>Will my website be mobile-friendly?</span>
-            <span class="faq-sign">+</span>
-          </button>
+          <button class="faq-trigger" aria-expanded="false"><span>Will my website be mobile-friendly?</span><span class="faq-sign">+</span></button>
           <div class="faq-content"><p>Absolutely. Every project is built mobile-first. I perform rigorous device test cycles across iOS, Android, and tablets to guarantee visual and functional responsiveness.</p></div>
         </div>
         <div class="faq-item reveal">
-          <button class="faq-trigger" aria-expanded="false">
-            <span>Do you offer maintenance services?</span>
-            <span class="faq-sign">+</span>
-          </button>
+          <button class="faq-trigger" aria-expanded="false"><span>Do you offer maintenance services?</span><span class="faq-sign">+</span></button>
           <div class="faq-content"><p>Yes, I offer ongoing maintenance agreements covering security checks, automated updates, database cloud backups, layout changes, and priority support.</p></div>
         </div>
         <div class="faq-item reveal">
-          <button class="faq-trigger" aria-expanded="false">
-            <span>Can you redesign an existing website?</span>
-            <span class="faq-sign">+</span>
-          </button>
+          <button class="faq-trigger" aria-expanded="false"><span>Can you redesign an existing website?</span><span class="faq-sign">+</span></button>
           <div class="faq-content"><p>Yes. I analyze your existing traffic bounce markers, identify slow page bottlenecks, and upgrade files to premium styling structures to improve lead retention.</p></div>
         </div>
       </div>
@@ -456,45 +384,25 @@
 
   <!-- Contact -->
   <section id="contact" class="section contact">
-    <div class="shell">
-      <div class="contact-statement reveal">
-        <span class="section-index">09 — Contact</span>
-        <h2 class="contact-big">Have a project in mind? Let's build your next website. Reach out at <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></h2>
-      </div>
-      <div class="contact-layout">
-        <form id="contactForm" class="contact-form reveal" novalidate>
-          <div class="field">
-            <label for="c-name">Full Name *</label>
-            <input type="text" id="c-name" name="name" placeholder="John Doe" required>
-          </div>
-          <div class="field">
-            <label for="c-email">Email Address *</label>
-            <input type="email" id="c-email" name="email" placeholder="john@example.com" required>
-          </div>
-          <div class="field">
-            <label for="c-phone">Phone Number</label>
-            <input type="tel" id="c-phone" name="phone" placeholder="+91 98765 43210">
-          </div>
-          <div class="field">
-            <label for="c-details">Project Details *</label>
-            <textarea id="c-details" name="details" placeholder="Describe your website goals, features, and desired timelines..." required></textarea>
-          </div>
-          <button type="submit" class="btn-line btn-submit">Start Your Project <span class="arrow">¬</span></button>
-        </form>
-        <div class="contact-info reveal">
-          <div class="contact-info-block">
-            <span class="contact-info-label">Email</span>
-            <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a>
-          </div>
-          <div class="contact-info-block">
-            <span class="contact-info-label">Phone</span>
-            <span>+91 XXXXX XXXXX</span>
-          </div>
-          <div class="contact-info-block">
-            <span class="contact-info-label">Location</span>
-            <span>India</span>
-          </div>
+    <div class="shell contact-inner">
+      <div class="contact-copy reveal">
+        <span class="kicker">Get in touch</span>
+        <h2 class="section-title">Let's build your next website.</h2>
+        <p class="section-sub">Whether you need a brand-new website setup, custom landing pages, or redesigning an existing layout, I am here to help you turn your concepts into clean realities.</p>
+        <div class="contact-info">
+          <div class="contact-info-row"><span class="ci-label">Email</span><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></div>
+          <div class="contact-info-row"><span class="ci-label">Phone</span><span>+91 XXXXX XXXXX</span></div>
+          <div class="contact-info-row"><span class="ci-label">Location</span><span>India</span></div>
         </div>
+      </div>
+      <div class="contact-card reveal">
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="field"><label for="c-name">Full Name *</label><input type="text" id="c-name" name="name" placeholder="John Doe" required></div>
+          <div class="field"><label for="c-email">Email Address *</label><input type="email" id="c-email" name="email" placeholder="john@example.com" required></div>
+          <div class="field"><label for="c-phone">Phone Number</label><input type="tel" id="c-phone" name="phone" placeholder="+91 98765 43210"></div>
+          <div class="field"><label for="c-details">Project Details *</label><textarea id="c-details" name="details" placeholder="Describe your website goals, features, and desired timelines..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block btn-submit">Start Your Project</button>
+        </form>
       </div>
     </div>
   </section>
@@ -502,32 +410,36 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="shell">
-      <div class="footer-top">
-        <a href="#hero" class="footer-logo">DevStudio<span class="logo-mark">®</span></a>
-        <p class="footer-tagline">Designing and developing premium custom websites that convert clicks into permanent clients for your brand.</p>
+      <div class="footer-cta reveal">
+        <h2>Have a project in mind?</h2>
+        <a href="#contact" class="btn btn-primary btn-lg trigger-modal" data-cta="Get Free Consultation">Get Free Consultation</a>
       </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <span class="footer-col-label">Menu</span>
-          <a href="#work">Work</a>
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a href="#hero" class="logo" data-scroll>DevStudio<span class="logo-dot"></span></a>
+          <p>Designing and developing premium custom websites that convert clicks into permanent clients for your brand.</p>
         </div>
         <div class="footer-col">
-          <span class="footer-col-label">Social</span>
+          <span class="footer-label">Menu</span>
+          <a href="#work" data-scroll>Work</a>
+          <a href="#services" data-scroll>Services</a>
+          <a href="#process" data-scroll>Process</a>
+          <a href="#pricing" data-scroll>Pricing</a>
+          <a href="#about" data-scroll>About</a>
+          <a href="#contact" data-scroll>Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-label">Social</span>
           <a href="#">LinkedIn</a>
           <a href="#">Twitter / X</a>
           <a href="#">GitHub</a>
           <a href="#">Instagram</a>
         </div>
-        <div class="footer-col footer-col-news">
-          <span class="footer-col-label">Newsletter</span>
-          <form class="footer-news-form" id="newsForm" novalidate>
+        <div class="footer-col footer-news">
+          <span class="footer-label">Newsletter</span>
+          <form class="news-form" id="newsForm" novalidate>
             <input type="email" placeholder="Your email" aria-label="Email" required>
-            <button type="submit" aria-label="Subscribe">¬</button>
+            <button type="submit" aria-label="Subscribe">→</button>
           </form>
         </div>
       </div>
@@ -538,50 +450,31 @@
     </div>
   </footer>
 
-  <!-- Success Toast -->
-  <div id="toast" class="toast" role="alert" aria-live="assertive">
-    <span class="toast-text">Message sent successfully!</span>
-  </div>
+  <!-- Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"><span class="toast-text">Message sent successfully!</span></div>
 
-  <!-- Consultation Modal -->
+  <!-- Modal -->
   <div id="consultationModal" class="modal">
     <div class="modal-backdrop"></div>
     <div class="modal-container">
       <div class="modal-header">
         <div>
-          <span class="section-index">Get in touch</span>
           <h3 id="modalTitle">Get Free Consultation</h3>
           <p id="modalSubtitle">Tell me about your business goals and get started.</p>
         </div>
         <button class="modal-close" aria-label="Close Modal">×</button>
       </div>
-      <div class="modal-body">
-        <form id="modalForm" class="contact-form" novalidate>
-          <div class="field">
-            <label for="m-name">Full Name *</label>
-            <input type="text" id="m-name" name="name" placeholder="John Doe" required>
-          </div>
-          <div class="field">
-            <label for="m-email">Email Address *</label>
-            <input type="email" id="m-email" name="email" placeholder="john@example.com" required>
-          </div>
-          <div class="field">
-            <label for="m-phone">Phone Number</label>
-            <input type="tel" id="m-phone" name="phone" placeholder="+91 98765 43210">
-          </div>
-          <div class="field">
-            <label for="m-details">Project Details *</label>
-            <textarea id="m-details" name="details" placeholder="Describe your website goals..." required></textarea>
-          </div>
-          <button type="submit" class="btn-line btn-submit">Send Request <span class="arrow">¬</span></button>
-        </form>
-      </div>
+      <form id="modalForm" class="contact-form" novalidate>
+        <div class="field"><label for="m-name">Full Name *</label><input type="text" id="m-name" name="name" placeholder="John Doe" required></div>
+        <div class="field"><label for="m-email">Email Address *</label><input type="email" id="m-email" name="email" placeholder="john@example.com" required></div>
+        <div class="field"><label for="m-phone">Phone Number</label><input type="tel" id="m-phone" name="phone" placeholder="+91 98765 43210"></div>
+        <div class="field"><label for="m-details">Project Details *</label><textarea id="m-details" name="details" placeholder="Describe your website goals..." required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block btn-submit">Send Request</button>
+      </form>
     </div>
   </div>
 
-  <!-- Lenis smooth scroll -->
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <!-- Main Script -->
   <script src="script.js"></script>
 </body>
 </html>
