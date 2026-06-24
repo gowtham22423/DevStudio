@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Web Development Services | Freelance Web Developer</title>
-  
+  <title>DevStudio — Premium Web Design & Development</title>
+
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Get fast, modern, and SEO-optimized custom websites that turn visitors into loyal customers. Book a free consultation today for your development project.">
-  <meta name="keywords" content="Freelance Web Developer, Custom Website Design, E-commerce stores, Landing pages, Website redesign, business website, fast website creation">
-  <meta name="author" content="Professional Developer">
-  <meta property="og:title" content="Premium Web Development Services | Freelance Web Developer">
+  <meta name="description" content="DevStudio crafts fast, modern, SEO-optimized custom websites that turn visitors into loyal customers. Premium web design and development.">
+  <meta name="keywords" content="Freelance Web Developer, Custom Website Design, E-commerce stores, Landing pages, Website redesign, business website">
+  <meta name="author" content="DevStudio">
+  <meta property="og:title" content="DevStudio — Premium Web Design & Development">
   <meta property="og:description" content="Fast, modern, and SEO-optimized custom websites designed to convert visitors into loyal clients.">
   <meta property="og:type" content="website">
-  
-  <!-- Google Fonts: Inter -->
+
+  <!-- Premium Fonts: Fraunces (display serif) + Space Grotesk (grotesk UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
   <!-- Auth Guard -->
   <script>
     if (localStorage.getItem('devstudio_logged_in') !== 'true') {
@@ -38,1100 +38,550 @@
 </head>
 <body>
 
-  <!-- Sticky Header Navigation -->
-  <header>
-    <div class="container nav-wrapper">
-      <a href="#hero" class="logo" id="logoLink">
-        DevStudio<span class="logo-dot"></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html#hero" class="active">Home</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#portfolio">Work</a></li>
-        <li><a href="index.html#why-choose-me">Why Me</a></li>
-        <li><a href="index.html#process">Process</a></li>
-        <li><a href="index.html#pricing">Pricing</a></li>
-        <li><a href="index.html#testimonials">Reviews</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="login.html" class="nav-login-link">Login</a></li>
-      </ul>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
+  <!-- Page load curtain -->
+  <div class="page-loader" id="pageLoader">
+    <span class="page-loader-text">DevStudio</span>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="shell nav-wrapper">
+      <a href="index.html#hero" class="logo" id="logoLink">DevStudio<span class="logo-mark">®</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="#contact" class="nav-contact trigger-modal" data-cta="Get Free Consultation">Contact <span class="arrow">¬</span></a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+        <span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="hero" class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="badge badge-shimmer" style="animation: fadeUpBadge 0.6s ease 0.2s forwards; opacity: 0; transform: translateY(20px);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          Open for New Projects
-        </span>
-        <h1><span class="typewriter-wrapper"><span class="typewriter-text"></span><span class="typewriter-cursor"></span></span></h1>
-        <p class="hero-element" style="--delay: 0.8s">I design and develop fast, modern, SEO-friendly websites that help businesses attract customers and increase revenue.</p>
-        <div class="hero-actions hero-element" style="--delay: 1.2s">
-          <a href="#contact" class="btn btn-primary trigger-modal" data-cta="Get Free Consultation">Get Free Consultation</a>
-          <a href="#portfolio" class="btn btn-secondary">View My Work</a>
-        </div>
-        <div class="trust-indicators hero-element" style="--delay: 1.6s">
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Responsive Design
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Fast Delivery
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            SEO Optimized
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Ongoing Support
-          </div>
-        </div>
+    <div class="shell">
+      <div class="hero-meta">
+        <span class="eyebrow"><span class="status-dot"></span> Open for new projects — 2026</span>
       </div>
-      <div class="hero-visual">
-        <!-- SVG Vector Developer Design -->
-        <svg class="hero-illustration" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="50" y="80" width="400" height="280" rx="16" fill="#1E293B" filter="drop-shadow(0 20px 25px rgba(0,0,0,0.15))"/>
-          <rect x="50" y="80" width="400" height="40" rx="16" fill="#0F172A"/>
-          <circle cx="80" cy="100" r="6" fill="#EF4444"/>
-          <circle cx="100" cy="100" r="6" fill="#F59E0B"/>
-          <circle cx="120" cy="100" r="6" fill="#10B981"/>
-          
-          <!-- Code Editor Elements -->
-          <rect x="80" y="150" width="120" height="16" rx="4" fill="#3B82F6" opacity="0.8"/>
-          <rect x="80" y="180" width="280" height="16" rx="4" fill="#06B6D4" opacity="0.6"/>
-          <rect x="80" y="210" width="200" height="16" rx="4" fill="#10B981" opacity="0.7"/>
-          <rect x="120" y="240" width="180" height="16" rx="4" fill="#8B5CF6" opacity="0.7"/>
-          <rect x="120" y="270" width="240" height="16" rx="4" fill="#F59E0B" opacity="0.7"/>
-          <rect x="80" y="300" width="100" height="16" rx="4" fill="#3B82F6" opacity="0.8"/>
-          
-          <!-- Floating UI Screen Mockups -->
-          <g filter="drop-shadow(0 10px 15px rgba(37,99,235,0.2))">
-            <rect x="280" y="220" width="180" height="220" rx="12" fill="#FFFFFF"/>
-            <rect x="280" y="220" width="180" height="60" rx="12" fill="#2563EB"/>
-            <circle cx="370" cy="250" r="16" fill="#FFFFFF" opacity="0.2"/>
-            <rect x="300" y="300" width="140" height="12" rx="4" fill="#E2E8F0"/>
-            <rect x="300" y="324" width="100" height="12" rx="4" fill="#E2E8F0"/>
-            <rect x="300" y="356" width="60" height="24" rx="6" fill="#06B6D4"/>
-            <circle cx="410" cy="368" r="14" fill="#2563EB" opacity="0.1"/>
-          </g>
-        </svg>
-        <div class="hero-shapes">
-          <div class="shape-blob shape-blob-1"></div>
-          <div class="shape-blob shape-blob-2"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="section section-bg">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">My Services</h2>
-        <p class="section-desc">I provide end-to-end web design and development solutions tailored to grow your business, increase brand trust, and convert visitors into active customers.</p>
-      </div>
-      <div class="services-grid">
-        <!-- Service Card 1 -->
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          </div>
-          <h3>Website Design</h3>
-          <p>Custom modern UI/UX designs crafted specifically for your target audience and tailored to achieve your unique business goals.</p>
-          <a href="website-design.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <!-- Service Card 2 -->
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
-          </div>
-          <h3>Website Development</h3>
-          <p>Fast-loading, clean-coded, fully responsive, and highly scalable websites built using the latest web standards.</p>
-          <a href="website-development.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <!-- Service Card 3 -->
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <h3>Landing Pages</h3>
-          <p>High-converting single-page campaigns built with crisp messaging, modern structures, and optimal performance for paid ads.</p>
-          <a href="landing-pages.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <!-- Service Card 4 -->
-        <div class="service-card reveal reveal-delay-4">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          </div>
-          <h3>E-Commerce Stores</h3>
-          <p>Fully secure online stores featuring smooth payment gateway integrations, seamless checkout funnels, and easy product managers.</p>
-          <a href="ecommerce-stores.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <!-- Service Card 5 -->
-        <div class="service-card reveal reveal-delay-5">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-          </div>
-          <h3>Website Redesign</h3>
-          <p>Transform your outdated, slow, or low-performing website into a premium, modern experience that captures attention and retains clients.</p>
-          <a href="website-redesign.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-        <!-- Service Card 6 -->
-        <div class="service-card reveal reveal-delay-6">
-          <div class="service-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          </div>
-          <h3>Website Maintenance</h3>
-          <p>Rest easy with regular updates, scheduled secure database backups, malware scans, performance checks, and ongoing support.</p>
-          <a href="website-maintenance.html" class="btn-link">
-            Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#portfolio" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: View Featured Projects
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-inner">Professional websites</span></span>
+        <span class="line"><span class="line-inner">that help businesses</span></span>
+        <span class="line"><span class="line-inner"><em>grow.</em></span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-lede reveal">I design and develop fast, modern, SEO-friendly websites that help businesses attract customers and increase revenue.</p>
+        <a href="#work" class="scroll-cue reveal" data-scroll>
+          <span>Selected work</span>
+          <span class="arrow-down">¬</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section id="portfolio" class="section">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-desc">Take a look at some of my recent work built to optimize lead generation, increase performance, and elevate digital presence.</p>
+  <!-- Marquee strip -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Strategy</span><span class="dot">•</span><span>Design</span><span class="dot">•</span><span>Development</span><span class="dot">•</span><span>SEO</span><span class="dot">•</span><span>E-Commerce</span><span class="dot">•</span><span>Branding</span><span class="dot">•</span>
+      <span>Strategy</span><span class="dot">•</span><span>Design</span><span class="dot">•</span><span>Development</span><span class="dot">•</span><span>SEO</span><span class="dot">•</span><span>E-Commerce</span><span class="dot">•</span><span>Branding</span><span class="dot">•</span>
+    </div>
+  </div>
+
+  <!-- Work / Portfolio -->
+  <section id="work" class="section work">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">01 — Selected Work</span>
+        <h2 class="section-title">Recent projects built to perform.</h2>
       </div>
-      <div class="portfolio-grid">
+
+      <div class="work-list">
         <!-- Project 1 -->
-        <div class="portfolio-card reveal reveal-delay-1">
-          <div class="portfolio-img-wrapper">
-            <img class="portfolio-img" src="restaurant_mockup.png" alt="Restaurant Website Mockup">
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="website-design.html" class="work-row reveal">
+          <span class="work-no">01<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">Restaurant Website</h3>
+            <p class="work-desc">A clean culinary showcase featuring an interactive reservation engine, digital menu manager, and social integrations.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">Restaurant</span>
-            </div>
-            <h3 class="portfolio-title">Restaurant Website</h3>
-            <p class="portfolio-summary">A clean culinary showcase featuring an interactive reservation engine, digital menu manager, and social integrations.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">React</span>
-              <span class="portfolio-tech-tag">CSS Grid</span>
-              <span class="portfolio-tech-tag">GSAP</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (Restaurant Website)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>React</span><span>CSS Grid</span><span>GSAP</span>
           </div>
-        </div>
+          <span class="work-cat">Restaurant</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media"><img src="restaurant_mockup.png" alt="Restaurant Website Mockup" loading="lazy"></div>
+        </a>
 
         <!-- Project 2 -->
-        <div class="portfolio-card reveal reveal-delay-2">
-          <div class="portfolio-img-wrapper">
-            <img class="portfolio-img" src="real_estate_mockup.png" alt="Real Estate Listings Platform Mockup">
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="website-development.html" class="work-row reveal">
+          <span class="work-no">02<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">Real Estate Website</h3>
+            <p class="work-desc">Searchable directory with interactive map search, real-time consultation scheduling, and high-quality photography carousel layout.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">Real Estate</span>
-            </div>
-            <h3 class="portfolio-title">Real Estate Website</h3>
-            <p class="portfolio-summary">Searchable directory with interactive map search, real-time consultation scheduling, and high-quality photography carousel layout.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">NextJS</span>
-              <span class="portfolio-tech-tag">Mapbox</span>
-              <span class="portfolio-tech-tag">Flexbox</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (Real Estate Website)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>NextJS</span><span>Mapbox</span><span>Flexbox</span>
           </div>
-        </div>
+          <span class="work-cat">Real Estate</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media"><img src="real_estate_mockup.png" alt="Real Estate Listings Platform Mockup" loading="lazy"></div>
+        </a>
 
         <!-- Project 3 -->
-        <div class="portfolio-card reveal reveal-delay-3">
-          <div class="portfolio-img-wrapper">
-            <svg class="portfolio-img" viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="320" height="200" fill="#1E293B"/>
-              <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">Pulse Fitness</text>
-              <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="#06B6D4" font-family="'Inter', sans-serif" font-size="12" font-weight="500">High-Conversion Funnel</text>
-            </svg>
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="landing-pages.html" class="work-row reveal">
+          <span class="work-no">03<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">Fitness Landing Page</h3>
+            <p class="work-desc">High-performance landing page geared to maximize gym membership signups, class bookings, and premium coaching programs.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">Wellness</span>
-            </div>
-            <h3 class="portfolio-title">Fitness Landing Page</h3>
-            <p class="portfolio-summary">High-performance landing page geared to maximize gym membership signups, class bookings, and premium coaching programs.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">HTML5</span>
-              <span class="portfolio-tech-tag">Vanilla CSS</span>
-              <span class="portfolio-tech-tag">AOS</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (Fitness Landing Page)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>HTML5</span><span>Vanilla CSS</span><span>AOS</span>
           </div>
-        </div>
+          <span class="work-cat">Wellness</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media work-media-text"><span>Pulse Fitness</span></div>
+        </a>
 
         <!-- Project 4 -->
-        <div class="portfolio-card reveal reveal-delay-4">
-          <div class="portfolio-img-wrapper">
-            <svg class="portfolio-img" viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="320" height="200" fill="#1E293B"/>
-              <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">Luxe Wardrobe</text>
-              <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="#06B6D4" font-family="'Inter', sans-serif" font-size="12" font-weight="500">Boutique Shopping Experience</text>
-            </svg>
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="ecommerce-stores.html" class="work-row reveal">
+          <span class="work-no">04<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">Ecommerce Store</h3>
+            <p class="work-desc">Fast storefront featuring responsive product catalog, dynamic cart interface, Stripe checkout integration, and invoice generation.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">Retail</span>
-            </div>
-            <h3 class="portfolio-title">Ecommerce Store</h3>
-            <p class="portfolio-summary">Fast storefront featuring responsive product catalog, dynamic cart interface, Stripe checkout integration, and invoice generation.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">React</span>
-              <span class="portfolio-tech-tag">Stripe SDK</span>
-              <span class="portfolio-tech-tag">Redux</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (Ecommerce Store)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>React</span><span>Stripe SDK</span><span>Redux</span>
           </div>
-        </div>
+          <span class="work-cat">Retail</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media work-media-text"><span>Luxe Wardrobe</span></div>
+        </a>
 
         <!-- Project 5 -->
-        <div class="portfolio-card reveal reveal-delay-5">
-          <div class="portfolio-img-wrapper">
-            <img class="portfolio-img" src="saas_mockup.png" alt="SaaS Analytical Dashboard Mockup">
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="website-development.html" class="work-row reveal">
+          <span class="work-no">05<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">SaaS Dashboard</h3>
+            <p class="work-desc">A complex analytical board with interactive charts, user permissions settings, drag-and-drop report layout, and dark mode.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">SaaS</span>
-            </div>
-            <h3 class="portfolio-title">SaaS Dashboard</h3>
-            <p class="portfolio-summary">A complex analytical board with interactive charts, user permissions settings, drag-and-drop report layout, and dark mode.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">VueJS</span>
-              <span class="portfolio-tech-tag">ChartJS</span>
-              <span class="portfolio-tech-tag">Tailwind</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (SaaS Dashboard)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>VueJS</span><span>ChartJS</span><span>Tailwind</span>
           </div>
-        </div>
+          <span class="work-cat">SaaS</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media"><img src="saas_mockup.png" alt="SaaS Analytical Dashboard Mockup" loading="lazy"></div>
+        </a>
 
         <!-- Project 6 -->
-        <div class="portfolio-card reveal reveal-delay-6">
-          <div class="portfolio-img-wrapper">
-            <svg class="portfolio-img" viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="320" height="200" fill="#1E293B"/>
-              <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">Apex Dental Clinic</text>
-              <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="#06B6D4" font-family="'Inter', sans-serif" font-size="12" font-weight="500">Local SEO Optimized Hub</text>
-            </svg>
-            <div class="portfolio-img-overlay">
-              <span class="portfolio-overlay-text">
-                Explore Project Details
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-            </div>
+        <a href="website-redesign.html" class="work-row reveal">
+          <span class="work-no">06<span class="work-no-total">/06</span></span>
+          <div class="work-main">
+            <h3 class="work-title">Local Business Website</h3>
+            <p class="work-desc">Fully optimized local search platform highlighting services, interactive team profiles, client reviews, and direct email lead captures.</p>
           </div>
-          <div class="portfolio-content">
-            <div class="portfolio-meta">
-              <span class="portfolio-industry">Healthcare</span>
-            </div>
-            <h3 class="portfolio-title">Local Business Website</h3>
-            <p class="portfolio-summary">Fully optimized local search platform highlighting services, interactive team profiles, client reviews, and direct email lead captures.</p>
-            <div class="portfolio-tech-list">
-              <span class="portfolio-tech-tag">WordPress</span>
-              <span class="portfolio-tech-tag">Elementor</span>
-              <span class="portfolio-tech-tag">Yoast SEO</span>
-            </div>
-            <a href="#contact" class="portfolio-cta-btn trigger-modal" data-cta="Request Similar Project (Local Business Website)">
-              View Project
-            </a>
+          <div class="work-tags">
+            <span>WordPress</span><span>Elementor</span><span>Yoast SEO</span>
           </div>
-        </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#why-choose-me" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: Why Clients Work With Me
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <span class="work-cat">Healthcare</span>
+          <span class="work-arrow">¬</span>
+          <div class="work-media work-media-text"><span>Apex Dental Clinic</span></div>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Me Section -->
-  <section id="why-choose-me" class="section section-bg">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">Why Clients Work With Me</h2>
-        <p class="section-desc">I bridge the gap between design excellence and business results, building solid partnerships centered around growth.</p>
+  <!-- Services -->
+  <section id="services" class="section services">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">02 — Services</span>
+        <h2 class="section-title">End-to-end web design &amp; development.</h2>
       </div>
-      <div class="features-grid">
-        <!-- Feature 1 -->
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
+      <div class="services-list">
+        <a href="website-design.html" class="service-row reveal">
+          <span class="service-no">01</span>
+          <h3 class="service-name">Website Design</h3>
+          <p class="service-desc">Custom modern UI/UX designs crafted specifically for your target audience and tailored to achieve your unique business goals.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+        <a href="website-development.html" class="service-row reveal">
+          <span class="service-no">02</span>
+          <h3 class="service-name">Website Development</h3>
+          <p class="service-desc">Fast-loading, clean-coded, fully responsive, and highly scalable websites built using the latest web standards.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+        <a href="landing-pages.html" class="service-row reveal">
+          <span class="service-no">03</span>
+          <h3 class="service-name">Landing Pages</h3>
+          <p class="service-desc">High-converting single-page campaigns built with crisp messaging, modern structures, and optimal performance for paid ads.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+        <a href="ecommerce-stores.html" class="service-row reveal">
+          <span class="service-no">04</span>
+          <h3 class="service-name">E-Commerce Stores</h3>
+          <p class="service-desc">Fully secure online stores featuring smooth payment gateway integrations, seamless checkout funnels, and easy product managers.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+        <a href="website-redesign.html" class="service-row reveal">
+          <span class="service-no">05</span>
+          <h3 class="service-name">Website Redesign</h3>
+          <p class="service-desc">Transform your outdated, slow, or low-performing website into a premium, modern experience that captures attention and retains clients.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+        <a href="website-maintenance.html" class="service-row reveal">
+          <span class="service-no">06</span>
+          <h3 class="service-name">Website Maintenance</h3>
+          <p class="service-desc">Rest easy with regular updates, scheduled secure database backups, malware scans, performance checks, and ongoing support.</p>
+          <span class="service-arrow">¬</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Me -->
+  <section id="why" class="section why">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">03 — Why work with me</span>
+        <h2 class="section-title">Design excellence, business results.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal">
           <h3>Modern Design</h3>
           <p>Beautiful, clutter-free layouts built to reflect authority and command customer trust.</p>
         </div>
-        <!-- Feature 2 -->
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
+        <div class="why-item reveal">
           <h3>Fast Performance</h3>
           <p>Websites optimized for speed. Low page-load sizes that reduce bounce rates instantly.</p>
         </div>
-        <!-- Feature 3 -->
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </div>
+        <div class="why-item reveal">
           <h3>SEO Friendly</h3>
           <p>Pre-configured schema metrics, meta codes, and semantic builds to rank higher in search engines.</p>
         </div>
-        <!-- Feature 4 -->
-        <div class="feature-card reveal reveal-delay-4">
-          <div class="feature-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </div>
+        <div class="why-item reveal">
           <h3>Reliable Support</h3>
           <p>Continuous support and quick response assistance post-launch. Always just an email away.</p>
         </div>
       </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#process" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: How I Work (My Process)
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section process">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">04 — Process</span>
+        <h2 class="section-title">A transparent, structured workflow.</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-row reveal"><span class="process-no">01</span><h3>Discovery Call</h3><p>Aligning on goals &amp; scope</p></div>
+        <div class="process-row reveal"><span class="process-no">02</span><h3>Planning</h3><p>Creating site-map &amp; strategy</p></div>
+        <div class="process-row reveal"><span class="process-no">03</span><h3>Design</h3><p>UI prototypes &amp; branding</p></div>
+        <div class="process-row reveal"><span class="process-no">04</span><h3>Development</h3><p>Writing high-quality code</p></div>
+        <div class="process-row reveal"><span class="process-no">05</span><h3>Testing</h3><p>Optimizing speed &amp; response</p></div>
+        <div class="process-row reveal"><span class="process-no">06</span><h3>Launch</h3><p>Deploying to live servers</p></div>
+        <div class="process-row reveal"><span class="process-no">07</span><h3>Support</h3><p>Maintenance &amp; performance</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Work Process Section -->
-  <section id="process" class="section">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">My Process</h2>
-        <p class="section-desc">From initial idea to launch and beyond, I follow a transparent, structured workflow designed to keep projects running efficiently.</p>
-      </div>
-      <div class="timeline-wrapper">
-        <div class="timeline-line"></div>
-        <div class="timeline-grid">
-          <!-- Step 1 -->
-          <div class="timeline-step reveal reveal-delay-1">
-            <div class="timeline-node">1</div>
-            <div class="timeline-title">Discovery Call</div>
-            <div class="timeline-desc">Aligning on goals & scope</div>
-          </div>
-          <!-- Step 2 -->
-          <div class="timeline-step reveal reveal-delay-2">
-            <div class="timeline-node">2</div>
-            <div class="timeline-title">Planning</div>
-            <div class="timeline-desc">Creating site-map & strategy</div>
-          </div>
-          <!-- Step 3 -->
-          <div class="timeline-step reveal reveal-delay-3">
-            <div class="timeline-node">3</div>
-            <div class="timeline-title">Design</div>
-            <div class="timeline-desc">UI prototypes & branding</div>
-          </div>
-          <!-- Step 4 -->
-          <div class="timeline-step reveal reveal-delay-4">
-            <div class="timeline-node">4</div>
-            <div class="timeline-title">Development</div>
-            <div class="timeline-desc">Writing high-quality code</div>
-          </div>
-          <!-- Step 5 -->
-          <div class="timeline-step reveal reveal-delay-5">
-            <div class="timeline-node">5</div>
-            <div class="timeline-title">Testing</div>
-            <div class="timeline-desc">Optimizing speed & response</div>
-          </div>
-          <!-- Step 6 -->
-          <div class="timeline-step reveal reveal-delay-6">
-            <div class="timeline-node">6</div>
-            <div class="timeline-title">Launch</div>
-            <div class="timeline-desc">Deploying to live servers</div>
-          </div>
-          <!-- Step 7 -->
-          <div class="timeline-step reveal reveal-delay-1">
-            <div class="timeline-node">7</div>
-            <div class="timeline-title">Support</div>
-            <div class="timeline-desc">Maintenance & performance</div>
-          </div>
-        </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#pricing" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: View Pricing & Tiers
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <span class="badge">Pricing Plans</span>
-        <h2 class="section-title">Affordable Pricing Built for Growth</h2>
-        <p class="section-desc">Get the best value pricing with zero hidden fees. Choose a plan that fits your business stage or request a fully customized solution.</p>
-      </div>
-      <div class="pricing-toggle">
-        <button class="pricing-toggle-btn active" data-plan="monthly">Monthly</button>
-        <button class="pricing-toggle-btn" data-plan="yearly">Yearly</button>
+  <!-- Pricing -->
+  <section id="pricing" class="section pricing">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">05 — Pricing</span>
+        <h2 class="section-title">Built for growth. Zero hidden fees.</h2>
       </div>
       <div class="pricing-grid">
-        <!-- Starter Plan -->
-        <div class="pricing-card reveal reveal-scale reveal-delay-1">
-          <div class="pricing-header">
+        <!-- Starter -->
+        <div class="price-card reveal">
+          <div class="price-card-head">
             <h3>Starter</h3>
-            <p class="pricing-desc">Perfect for small businesses or simple personal portfolios.</p>
-            <div class="price-wrapper">
-              <span class="currency">₹</span>
-              <span class="price" data-monthly="7,999" data-yearly="6,399">7,999</span>
-              <span class="period pricing-period" data-monthly="/one-time" data-yearly="/year">/one-time</span>
-            </div>
+            <p class="price-card-desc">Perfect for small businesses or simple personal portfolios.</p>
           </div>
-          <div class="pricing-body">
-            <div class="pricing-list-title">Includes:</div>
-            <ul class="pricing-features">
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                1-Page Conversion Layout
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Fully Responsive UI Design
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Basic SEO Configuration
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                1 Secure Contact Form
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                30 Days Post-Launch Support
-              </li>
-            </ul>
-            <div class="pricing-list-title" style="margin-top: 1.5rem;">Excludes:</div>
-            <ul class="pricing-features">
-              <li class="excluded">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                E-Commerce Cart Integration
-              </li>
-              <li class="excluded">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Advanced Analytical Pixels
-              </li>
-              <li class="excluded">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Dynamic database features
-              </li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#contact" class="btn btn-secondary trigger-modal" data-cta="Order Starter Plan (₹7,999)" style="width: 100%;">Get Started</a>
-          </div>
+          <div class="price-amount"><span class="currency">₹</span><span class="price">7,999</span><span class="period">/one-time</span></div>
+          <ul class="price-features">
+            <li>1-Page Conversion Layout</li>
+            <li>Fully Responsive UI Design</li>
+            <li>Basic SEO Configuration</li>
+            <li>1 Secure Contact Form</li>
+            <li>30 Days Post-Launch Support</li>
+            <li class="excluded">E-Commerce Cart Integration</li>
+            <li class="excluded">Advanced Analytical Pixels</li>
+            <li class="excluded">Dynamic database features</li>
+          </ul>
+          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Starter Plan (₹7,999)">Get Started <span class="arrow">¬</span></a>
         </div>
 
-        <!-- Growth Plan (Best Price / Value) -->
-        <div class="pricing-card popular reveal reveal-scale reveal-delay-2">
-          <div class="popular-ribbon">Best Value</div>
-          <div class="pricing-header">
+        <!-- Growth -->
+        <div class="price-card price-card-featured reveal">
+          <span class="price-ribbon">Best Value</span>
+          <div class="price-card-head">
             <h3>Growth</h3>
-            <p class="pricing-desc">Ideal for professional service brands and small agencies.</p>
-            <div class="price-wrapper">
-              <span class="currency">₹</span>
-              <span class="price" data-monthly="14,999" data-yearly="11,999">14,999</span>
-              <span class="period pricing-period" data-monthly="/one-time" data-yearly="/year">/one-time</span>
-            </div>
+            <p class="price-card-desc">Ideal for professional service brands and small agencies.</p>
           </div>
-          <div class="pricing-body">
-            <div class="pricing-list-title">Includes:</div>
-            <ul class="pricing-features">
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Up to 5 Responsive Pages
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Premium Custom UI Design
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Advanced SEO Keyword Setup
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                3 Interactive Lead Forms
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Micro-Animations & Interaction
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                60 Days Priority Support
-              </li>
-            </ul>
-            <div class="pricing-list-title" style="margin-top: 1.5rem;">Excludes:</div>
-            <ul class="pricing-features">
-              <li class="excluded">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                E-Commerce Cart / Checkout
-              </li>
-              <li class="excluded">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Custom APIs & Databases
-              </li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#contact" class="btn btn-primary trigger-modal" data-cta="Order Growth Plan (₹14,999)" style="width: 100%;">Order Now</a>
-          </div>
+          <div class="price-amount"><span class="currency">₹</span><span class="price">14,999</span><span class="period">/one-time</span></div>
+          <ul class="price-features">
+            <li>Up to 5 Responsive Pages</li>
+            <li>Premium Custom UI Design</li>
+            <li>Advanced SEO Keyword Setup</li>
+            <li>3 Interactive Lead Forms</li>
+            <li>Micro-Animations &amp; Interaction</li>
+            <li>60 Days Priority Support</li>
+            <li class="excluded">E-Commerce Cart / Checkout</li>
+            <li class="excluded">Custom APIs &amp; Databases</li>
+          </ul>
+          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Growth Plan (₹14,999)">Order Now <span class="arrow">¬</span></a>
         </div>
 
-        <!-- Enterprise Plan -->
-        <div class="pricing-card reveal reveal-scale reveal-delay-3">
-          <div class="pricing-header">
+        <!-- Enterprise -->
+        <div class="price-card reveal">
+          <div class="price-card-head">
             <h3>Enterprise</h3>
-            <p class="pricing-desc">Best for e-commerce, custom apps & SaaS portals.</p>
-            <div class="price-wrapper">
-              <span class="currency">₹</span>
-              <span class="price" data-monthly="24,999" data-yearly="19,999">24,999</span>
-              <span class="period pricing-period" data-monthly="/one-time" data-yearly="/year">/one-time</span>
-            </div>
+            <p class="price-card-desc">Best for e-commerce, custom apps &amp; SaaS portals.</p>
           </div>
-          <div class="pricing-body">
-            <div class="pricing-list-title">Includes:</div>
-            <ul class="pricing-features">
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Unlimited Dynamic Pages
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Full E-Commerce Cart & Stripe
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Custom API/Database Portal
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                Advanced CMS Setup (WordPress/Payload)
-              </li>
-              <li class="included">
-                <svg class="feature-bullet" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                1-Year Premium Maintenance
-              </li>
-            </ul>
-            <div class="pricing-list-title" style="margin-top: 1.5rem;">Excludes:</div>
-            <ul class="pricing-features">
-              <li style="color: var(--text-light); font-size: 0.875rem; font-style: italic; list-style: none;">
-                Includes everything (No exclusions).
-              </li>
-            </ul>
-          </div>
-          <div class="pricing-footer">
-            <a href="#contact" class="btn btn-secondary trigger-modal" data-cta="Order Enterprise Plan (₹24,999)" style="width: 100%;">Get Custom Quote</a>
-          </div>
+          <div class="price-amount"><span class="currency">₹</span><span class="price">24,999</span><span class="period">/one-time</span></div>
+          <ul class="price-features">
+            <li>Unlimited Dynamic Pages</li>
+            <li>Full E-Commerce Cart &amp; Stripe</li>
+            <li>Custom API/Database Portal</li>
+            <li>Advanced CMS Setup (WordPress/Payload)</li>
+            <li>1-Year Premium Maintenance</li>
+            <li class="note">Includes everything (No exclusions).</li>
+          </ul>
+          <a href="#contact" class="price-cta trigger-modal" data-cta="Order Enterprise Plan (₹24,999)">Get Custom Quote <span class="arrow">¬</span></a>
         </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#testimonials" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: What Clients Say
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="section section-bg">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">What Clients Say</h2>
-        <p class="section-desc">Hear directly from some of the businesses and startup founders I've helped establish online presence.</p>
+  <!-- Testimonials -->
+  <section id="testimonials" class="section testimonials">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">06 — Words from clients</span>
       </div>
-      <div class="testimonials-grid">
-        <!-- Review 1 -->
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="testimonial-stars">
-            <!-- 5 Stars -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="testimonial-text">"The landing page developed for Pulse Fitness exceeded all our conversion goals. We saw a 35% increase in membership registrations in the first month alone. Extremely professional and responsive workflow throughout!"</p>
-          <div class="testimonial-profile">
-            <svg class="testimonial-avatar" viewBox="0 0 50 50">
-              <circle cx="25" cy="25" r="25" fill="#3B82F6" opacity="0.2"/>
-              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="16" fill="#2563EB">JD</text>
-            </svg>
-            <div class="testimonial-info">
-              <h4>John Doe</h4>
-              <p>Founder, Pulse Fitness</p>
-            </div>
-          </div>
-        </div>
-        <!-- Review 2 -->
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="testimonial-stars">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="testimonial-text">"Redesigning our local real estate listings portal was a daunting task. DevStudio simplified the whole sitemap layout, optimized listing load speed to near-instant, and integrated scheduling smoothly."</p>
-          <div class="testimonial-profile">
-            <svg class="testimonial-avatar" viewBox="0 0 50 50">
-              <circle cx="25" cy="25" r="25" fill="#10B981" opacity="0.2"/>
-              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="16" fill="#10B981">SS</text>
-            </svg>
-            <div class="testimonial-info">
-              <h4>Sarah Smith</h4>
-              <p>CEO, Apex Properties</p>
-            </div>
-          </div>
-        </div>
-        <!-- Review 3 -->
-        <div class="testimonial-card reveal reveal-delay-3">
-          <div class="testimonial-stars">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="testimonial-text">"Our online boutique sales doubled right after migration to the custom e-commerce solution. The Stripe payment integration works flawlessly and checkouts are extremely fast."</p>
-          <div class="testimonial-profile">
-            <svg class="testimonial-avatar" viewBox="0 0 50 50">
-              <circle cx="25" cy="25" r="25" fill="#8B5CF6" opacity="0.2"/>
-              <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="16" fill="#8B5CF6">EL</text>
-            </svg>
-            <div class="testimonial-info">
-              <h4>Emily Lee</h4>
-              <p>Director, Luxe Wardrobe</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#about" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: About Me Profile
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <div class="quotes">
+        <blockquote class="quote reveal">
+          <p>“The landing page developed for Pulse Fitness exceeded all our conversion goals. We saw a 35% increase in membership registrations in the first month alone. Extremely professional and responsive workflow throughout!”</p>
+          <footer><span class="quote-name">John Doe</span><span class="quote-role">Founder, Pulse Fitness</span></footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“Redesigning our local real estate listings portal was a daunting task. DevStudio simplified the whole sitemap layout, optimized listing load speed to near-instant, and integrated scheduling smoothly.”</p>
+          <footer><span class="quote-name">Sarah Smith</span><span class="quote-role">CEO, Apex Properties</span></footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“Our online boutique sales doubled right after migration to the custom e-commerce solution. The Stripe payment integration works flawlessly and checkouts are extremely fast.”</p>
+          <footer><span class="quote-name">Emily Lee</span><span class="quote-role">Director, Luxe Wardrobe</span></footer>
+        </blockquote>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container about-grid">
-      <div class="about-visual reveal reveal-left">
-        <div class="about-img-frame">
-          <img class="about-img" src="developer_portrait.png" alt="Professional Web Developer Headshot">
-          <div class="about-badge-floating">
-            <div class="about-badge-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div class="about-badge-text">
-              <h4>Verified Partner</h4>
-              <p>Top-Rated Freelancer</p>
-            </div>
-          </div>
-        </div>
+  <!-- About / Stats -->
+  <section id="about" class="section about">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">07 — About</span>
+        <h2 class="section-title">I build digital products that drive growth.</h2>
       </div>
-      <div class="about-content reveal reveal-right">
-        <span class="badge">About Me</span>
-        <h2>I Build Digital Products That Drive Growth</h2>
-        <p>I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers.</p>
-        
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number" data-target="50" data-suffix="+">0+</div>
-            <div class="stat-label">Projects Completed</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="20" data-suffix="+">0+</div>
-            <div class="stat-label">Happy Clients</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="99" data-suffix="%">0%</div>
-            <div class="stat-label">Satisfaction Rate</div>
-          </div>
+      <p class="about-lede reveal">I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers.</p>
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="stat-number" data-target="50" data-suffix="+">0</span>
+          <span class="stat-label">Projects Completed</span>
         </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#faq" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: Frequently Asked Questions
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <div class="stat reveal">
+          <span class="stat-number" data-target="20" data-suffix="+">0</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-number" data-target="99" data-suffix="%">0</span>
+          <span class="stat-label">Satisfaction Rate</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
-  <section id="faq" class="section section-bg">
-    <div class="container">
-      <div class="text-center max-w-3xl">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-desc">Got questions about my web services? Find quick responses to the questions I receive most often.</p>
+  <!-- FAQ -->
+  <section id="faq" class="section faq">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="section-index">08 — FAQ</span>
+        <h2 class="section-title">Frequently asked questions.</h2>
       </div>
       <div class="faq-list">
-        <!-- FAQ 1 -->
-        <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-item reveal">
           <button class="faq-trigger" aria-expanded="false">
-            <h3>How long does a website take to build?</h3>
-            <span class="faq-icon-wrapper">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
+            <span>How long does a website take to build?</span>
+            <span class="faq-sign">+</span>
           </button>
-          <div class="faq-content">
-            <p>Typically, a landing page takes about 1-2 weeks, while a full multipage website or custom e-commerce portal ranges between 3-6 weeks depending on integration complexity. We establish a clear milestone timeline during discovery.</p>
-          </div>
+          <div class="faq-content"><p>Typically, a landing page takes about 1-2 weeks, while a full multipage website or custom e-commerce portal ranges between 3-6 weeks depending on integration complexity. We establish a clear milestone timeline during discovery.</p></div>
         </div>
-        <!-- FAQ 2 -->
-        <div class="faq-item reveal reveal-delay-2">
+        <div class="faq-item reveal">
           <button class="faq-trigger" aria-expanded="false">
-            <h3>Do you provide hosting?</h3>
-            <span class="faq-icon-wrapper">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
+            <span>Do you provide hosting?</span>
+            <span class="faq-sign">+</span>
           </button>
-          <div class="faq-content">
-            <p>I guide you in picking optimal, highly secure hosting plans (Netlify, Vercel, Hostinger, AWS). I can handle setup configuration, custom nameservers, and cloud migration for a seamless launch.</p>
-          </div>
+          <div class="faq-content"><p>I guide you in picking optimal, highly secure hosting plans (Netlify, Vercel, Hostinger, AWS). I can handle setup configuration, custom nameservers, and cloud migration for a seamless launch.</p></div>
         </div>
-        <!-- FAQ 3 -->
-        <div class="faq-item reveal reveal-delay-3">
+        <div class="faq-item reveal">
           <button class="faq-trigger" aria-expanded="false">
-            <h3>Will my website be mobile-friendly?</h3>
-            <span class="faq-icon-wrapper">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
+            <span>Will my website be mobile-friendly?</span>
+            <span class="faq-sign">+</span>
           </button>
-          <div class="faq-content">
-            <p>Absolutely. Every project is built mobile-first. I perform rigorous device test cycles across iOS, Android, and tablets to guarantee visual and functional responsiveness.</p>
-          </div>
+          <div class="faq-content"><p>Absolutely. Every project is built mobile-first. I perform rigorous device test cycles across iOS, Android, and tablets to guarantee visual and functional responsiveness.</p></div>
         </div>
-        <!-- FAQ 4 -->
-        <div class="faq-item reveal reveal-delay-4">
+        <div class="faq-item reveal">
           <button class="faq-trigger" aria-expanded="false">
-            <h3>Do you offer maintenance services?</h3>
-            <span class="faq-icon-wrapper">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
+            <span>Do you offer maintenance services?</span>
+            <span class="faq-sign">+</span>
           </button>
-          <div class="faq-content">
-            <p>Yes, I offer ongoing maintenance agreements covering security checks, automated updates, database cloud backups, layout changes, and priority support.</p>
-          </div>
+          <div class="faq-content"><p>Yes, I offer ongoing maintenance agreements covering security checks, automated updates, database cloud backups, layout changes, and priority support.</p></div>
         </div>
-        <!-- FAQ 5 -->
-        <div class="faq-item reveal reveal-delay-5">
+        <div class="faq-item reveal">
           <button class="faq-trigger" aria-expanded="false">
-            <h3>Can you redesign an existing website?</h3>
-            <span class="faq-icon-wrapper">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
+            <span>Can you redesign an existing website?</span>
+            <span class="faq-sign">+</span>
           </button>
-          <div class="faq-content">
-            <p>Yes. I analyze your existing traffic bounce markers, identify slow page bottlenecks, and upgrade files to premium styling structures to improve lead retention.</p>
-          </div>
+          <div class="faq-content"><p>Yes. I analyze your existing traffic bounce markers, identify slow page bottlenecks, and upgrade files to premium styling structures to improve lead retention.</p></div>
         </div>
-      </div>
-      <!-- Next Section Guide Link -->
-      <div class="text-center" style="margin-top: 3.5rem;">
-        <a href="#contact" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
-          Next: Let's Talk (Contact Form)
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <div class="container contact-grid">
-      <div class="contact-card reveal reveal-left">
-        <form id="contactForm" class="contact-form" novalidate>
-          <div class="form-group">
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div class="shell">
+      <div class="contact-statement reveal">
+        <span class="section-index">09 — Contact</span>
+        <h2 class="contact-big">Have a project in mind? Let's build your next website. Reach out at <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></h2>
+      </div>
+      <div class="contact-layout">
+        <form id="contactForm" class="contact-form reveal" novalidate>
+          <div class="field">
             <label for="c-name">Full Name *</label>
             <input type="text" id="c-name" name="name" placeholder="John Doe" required>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="c-email">Email Address *</label>
             <input type="email" id="c-email" name="email" placeholder="john@example.com" required>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="c-phone">Phone Number</label>
             <input type="tel" id="c-phone" name="phone" placeholder="+91 98765 43210">
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="c-details">Project Details *</label>
             <textarea id="c-details" name="details" placeholder="Describe your website goals, features, and desired timelines..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-submit">Start Your Project</button>
+          <button type="submit" class="btn-line btn-submit">Start Your Project <span class="arrow">¬</span></button>
         </form>
-      </div>
-      <div class="contact-details reveal reveal-right">
-        <span class="badge">Get in Touch</span>
-        <h3>Let's Build Your Next Website</h3>
-        <p>Whether you need a brand-new website setup, custom landing pages, or redesigning an existing layout, I am here to help you turn your concepts into clean realities.</p>
-        
-        <div class="contact-info-list">
-          <!-- Info 1 -->
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div class="contact-info-text">
-              <h4>Email</h4>
-              <p><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></p>
-            </div>
+        <div class="contact-info reveal">
+          <div class="contact-info-block">
+            <span class="contact-info-label">Email</span>
+            <a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a>
           </div>
-          <!-- Info 2 -->
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div class="contact-info-text">
-              <h4>Phone</h4>
-              <p>+91 XXXXX XXXXX</p>
-            </div>
+          <div class="contact-info-block">
+            <span class="contact-info-label">Phone</span>
+            <span>+91 XXXXX XXXXX</span>
           </div>
-          <!-- Info 3 -->
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div class="contact-info-text">
-              <h4>Location</h4>
-              <p>India</p>
-            </div>
+          <div class="contact-info-block">
+            <span class="contact-info-label">Location</span>
+            <span>India</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Floating Sticky CTA Widget -->
-  <div class="sticky-cta trigger-modal" data-cta="Request a Quote">
-    <span class="sticky-cta-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    </span>
-    Get Free Quote
-  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="shell">
+      <div class="footer-top">
+        <a href="#hero" class="footer-logo">DevStudio<span class="logo-mark">®</span></a>
+        <p class="footer-tagline">Designing and developing premium custom websites that convert clicks into permanent clients for your brand.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <span class="footer-col-label">Menu</span>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Social</span>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter / X</a>
+          <a href="#">GitHub</a>
+          <a href="#">Instagram</a>
+        </div>
+        <div class="footer-col footer-col-news">
+          <span class="footer-col-label">Newsletter</span>
+          <form class="footer-news-form" id="newsForm" novalidate>
+            <input type="email" placeholder="Your email" aria-label="Email" required>
+            <button type="submit" aria-label="Subscribe">¬</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 DevStudio. All Rights Reserved.</span>
+        <span>Designed for high conversion &amp; performance.</span>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Success Toast Alert Component -->
+  <!-- Success Toast -->
   <div id="toast" class="toast" role="alert" aria-live="assertive">
-    <span class="toast-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-    </span>
     <span class="toast-text">Message sent successfully!</span>
   </div>
 
-  <!-- Interactive Action Modal Box -->
+  <!-- Consultation Modal -->
   <div id="consultationModal" class="modal">
     <div class="modal-backdrop"></div>
     <div class="modal-container">
       <div class="modal-header">
         <div>
+          <span class="section-index">Get in touch</span>
           <h3 id="modalTitle">Get Free Consultation</h3>
-          <p id="modalSubtitle" style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Tell me about your business goals and get started.</p>
+          <p id="modalSubtitle">Tell me about your business goals and get started.</p>
         </div>
-        <button class="modal-close" aria-label="Close Modal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
+        <button class="modal-close" aria-label="Close Modal">×</button>
       </div>
       <div class="modal-body">
         <form id="modalForm" class="contact-form" novalidate>
-          <div class="form-group">
+          <div class="field">
             <label for="m-name">Full Name *</label>
             <input type="text" id="m-name" name="name" placeholder="John Doe" required>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="m-email">Email Address *</label>
             <input type="email" id="m-email" name="email" placeholder="john@example.com" required>
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="m-phone">Phone Number</label>
             <input type="tel" id="m-phone" name="phone" placeholder="+91 98765 43210">
           </div>
-          <div class="form-group">
+          <div class="field">
             <label for="m-details">Project Details *</label>
             <textarea id="m-details" name="details" placeholder="Describe your website goals..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-submit">Send Request</button>
+          <button type="submit" class="btn-line btn-submit">Send Request <span class="arrow">¬</span></button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- Footer Newsletter -->
-  <section class="footer-newsletter">
-    <div class="container text-center">
-      <h3>Stay Updated with Web Trends</h3>
-      <p>Get tips on web design, development insights, and exclusive offers delivered to your inbox.</p>
-      <form class="footer-newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; document.getElementById('toast').querySelector('.toast-text').textContent='✅ Subscribed successfully!'; document.getElementById('toast').classList.add('show'); setTimeout(()=>document.getElementById('toast').classList.remove('show'),3000);">
-        <input type="email" placeholder="Enter your email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a href="#hero" class="logo">
-          DevStudio<span class="logo-dot"></span>
-        </a>
-        <p>Designing and developing premium custom websites that convert clicks into permanent clients for your brand.</p>
-      </div>
-      <div class="footer-links-col">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Featured Work</a></li>
-          <li><a href="#why-choose-me">Why Work With Me</a></li>
-          <li><a href="#process">My Work Process</a></li>
-          <li><a href="#about">About Profile</a></li>
-          <li><a href="#contact">Get In Touch</a></li>
-        </ul>
-      </div>
-      <div class="footer-social-col">
-        <h4>Connect Online</h4>
-        <div class="social-links">
-          <a href="#" class="social-btn" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Twitter">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>© 2026 DevStudio. All Rights Reserved.</p>
-      <p>Designed for High Conversion & Performance.</p>
-    </div>
-  </footer>
-
-  <!-- Dock Navigation -->
-  <nav class="dock-nav" id="dockNav">
-    <a href="#hero" class="dock-nav-item active" data-tooltip="Home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    </a>
-    <a href="#services" class="dock-nav-item" data-tooltip="Services">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-    </a>
-    <a href="#portfolio" class="dock-nav-item" data-tooltip="Work">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-    </a>
-    <a href="#pricing" class="dock-nav-item" data-tooltip="Pricing">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-    </a>
-    <a href="#testimonials" class="dock-nav-item" data-tooltip="Reviews">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    </a>
-    <a href="#contact" class="dock-nav-item" data-tooltip="Contact">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </a>
-  </nav>
-
-  <!-- Script File -->
+  <!-- Lenis smooth scroll -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <!-- Main Script -->
   <script src="script.js"></script>
 </body>
 </html>

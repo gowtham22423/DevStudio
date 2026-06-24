@@ -9,7 +9,7 @@
   <meta name="description" content="Access your client portal securely using multi-factor OTP verification.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
   <script>
@@ -17,65 +17,6 @@
       window.location.replace('index.html');
     }
   </script>
-  <style>
-    .login-container-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      width: 100%;
-      padding: 3rem 1rem;
-    }
-    .otp-digit {
-      width: 3.25rem;
-      height: 3.5rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: var(--border-radius-sm);
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-slate-50);
-      transition: var(--transition-smooth);
-    }
-    .otp-digit:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      background-color: #ffffff;
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-    }
-    /* Log table style details */
-    .history-card {
-      width: 100%;
-      max-width: 550px;
-      background: #ffffff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius-md);
-      padding: 2rem;
-      margin-top: 2rem;
-      box-shadow: var(--shadow-md);
-      z-index: 10;
-    }
-    .history-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.85rem;
-      margin-top: 1rem;
-    }
-    .history-table th, .history-table td {
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .history-table th {
-      background-color: var(--bg-slate-50);
-      font-weight: 600;
-      color: var(--secondary-color);
-    }
-    .history-table td {
-      color: var(--text-muted);
-    }
-  </style>
 </head>
 <body class="login-body">
 

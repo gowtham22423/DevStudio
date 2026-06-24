@@ -1,351 +1,329 @@
+/* ==========================================================================
+   DevStudio — Premium interactions
+   Lenis smooth scroll · 60fps reveals (transform/opacity) · editorial motion
+   ========================================================================== */
+
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Header Scroll Effect ---
-  const header = document.querySelector('header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header.classList.add('scrolled');
+
+  /* ---------------------------------------------------------------------------
+     Page loader
+     --------------------------------------------------------------------------- */
+  const loader = document.getElementById('pageLoader');
+  window.addEventListener('load', () => {
+    setTimeout(() => loader && loader.classList.add('loaded'), 600);
+  });
+  // Fallback in case load already fired
+  setTimeout(() => loader && loader.classList.add('loaded'), 1600);
+
+  /* ---------------------------------------------------------------------------
+     Lenis smooth scroll (graceful fallback to native)
+     --------------------------------------------------------------------------- */
+  let lenis = null;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typeof Lenis !== 'undefined' && !prefersReduced) {
+    lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+
+  // Smooth anchor navigation (works with or without Lenis)
+  const scrollToTarget = (target) => {
+    const el = document.querySelector(target);
+    if (!el) return;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: 0 });
     } else {
-      header.classList.remove('scrolled');
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  document.querySelectorAll('a[href*="#"]').forEach(link => {
+    const href = link.getAttribute('href');
+    const hash = href.includes('#') ? '#' + href.split('#')[1] : '';
+    // Only intercept same-page anchors that exist
+    if (hash && hash.length > 1 && document.querySelector(hash)) {
+      link.addEventListener('click', (e) => {
+        // Let modal triggers behave normally
+        if (link.classList.contains('trigger-modal')) return;
+        e.preventDefault();
+        scrollToTarget(hash);
+        closeMenu();
+      });
     }
   });
 
-  // --- Check & Update Client Logged-in State ---
+  /* ---------------------------------------------------------------------------
+     Header scroll state
+     --------------------------------------------------------------------------- */
+  const header = document.getElementById('header');
+  const onScroll = (y) => {
+    if (y > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  if (lenis) {
+    lenis.on('scroll', ({ scroll }) => onScroll(scroll));
+  } else {
+    window.addEventListener('scroll', () => onScroll(window.scrollY), { passive: true });
+  }
+  onScroll(window.scrollY);
+
+  /* ---------------------------------------------------------------------------
+     Mobile menu
+     --------------------------------------------------------------------------- */
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  const closeMenu = () => {
+    if (!navLinks) return;
+    navLinks.classList.remove('open');
+    menuToggle && menuToggle.classList.remove('open');
+  };
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('open');
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
+     Logged-in nav state
+     --------------------------------------------------------------------------- */
   const loginLink = document.querySelector('.nav-login-link');
   if (loginLink && localStorage.getItem('devstudio_logged_in') === 'true') {
-    const parentLi = loginLink.parentElement;
     const clientEmail = localStorage.getItem('devstudio_client_email') || 'Client';
     const emailPrefix = clientEmail.split('@')[0];
-    
-    // Change navigation look to show avatar & logout triggers
-    parentLi.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 0.75rem; background-color: rgba(37, 99, 235, 0.05); padding: 0.35rem 0.75rem; border-radius: var(--border-radius-sm); border: 1px solid rgba(37, 99, 235, 0.15); margin-left: 0.5rem;">
-        <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary-color);">👋 ${emailPrefix}</span>
-        <button id="logoutBtn" style="background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 0.8rem; font-weight: 700; padding: 0.25rem; transition: var(--transition-smooth);" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-muted)'">Logout</button>
-      </div>
-    `;
-    
-    // Bind logout button click
-    document.getElementById('logoutBtn').addEventListener('click', () => {
+    loginLink.textContent = `Logout (${emailPrefix})`;
+    loginLink.setAttribute('href', '#');
+    loginLink.addEventListener('click', (e) => {
+      e.preventDefault();
       localStorage.removeItem('devstudio_logged_in');
       localStorage.removeItem('devstudio_client_email');
       localStorage.removeItem('devstudio_client_phone');
       window.location.reload();
     });
-
-    // Update Hero badge welcoming text
-    const heroBadge = document.querySelector('#hero .badge');
-    if (heroBadge) {
-      heroBadge.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        Welcome back, ${emailPrefix}!
-      `;
-      heroBadge.style.backgroundColor = "rgba(16, 185, 129, 0.08)";
-      heroBadge.style.color = "#10b981";
-      heroBadge.style.borderColor = "rgba(16, 185, 129, 0.15)";
-    }
   }
 
-  // --- Hamburger Menu Toggle ---
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks.classList.toggle('open');
-  });
-
-  // Close mobile menu when clicking a link
-  const links = document.querySelectorAll('.nav-links a');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      navLinks.classList.remove('open');
+  /* ---------------------------------------------------------------------------
+     Hero line reveal (mask up) — runs after loader
+     --------------------------------------------------------------------------- */
+  const heroLines = document.querySelectorAll('.hero-title .line-inner');
+  const revealHero = () => {
+    heroLines.forEach((line, i) => {
+      line.style.transition = `transform 1s var(--ease)`;
+      line.style.transitionDelay = `${i * 0.09}s`;
+      line.style.transform = 'translateY(0)';
     });
-  });
+    document.querySelectorAll('.hero-lede, .scroll-cue, .hero-meta').forEach((el, i) => {
+      setTimeout(() => el.classList.add('in'), 500 + i * 120);
+    });
+  };
+  setTimeout(revealHero, prefersReduced ? 0 : 900);
 
-  // --- Smooth Scroll & Active Nav State on Scroll ---
-  const sections = document.querySelectorAll('section[id]');
-  window.addEventListener('scroll', () => {
-    let scrollY = window.pageYOffset;
-    
-    sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 100;
-      const sectionId = current.getAttribute('id');
-      
-      const navItem = document.querySelector(`.nav-links a[href*=${sectionId}]`);
-      if (navItem) {
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navItem.classList.add('active');
-        } else {
-          navItem.classList.remove('active');
+  /* ---------------------------------------------------------------------------
+     Scroll reveals (IntersectionObserver — GPU compositing, 60fps)
+     --------------------------------------------------------------------------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
         }
-      }
-    });
-  });
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
 
-  // --- Modal Logic ---
+  /* ---------------------------------------------------------------------------
+     Active nav link on scroll
+     --------------------------------------------------------------------------- */
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a[href*="#"]');
+  const setActiveNav = (y) => {
+    let current = '';
+    sections.forEach(sec => {
+      if (y >= sec.offsetTop - 220) current = sec.getAttribute('id');
+    });
+    navAnchors.forEach(a => {
+      const href = a.getAttribute('href') || '';
+      a.classList.toggle('active', href.endsWith('#' + current) && current !== '');
+    });
+  };
+  if (lenis) lenis.on('scroll', ({ scroll }) => setActiveNav(scroll));
+  else window.addEventListener('scroll', () => setActiveNav(window.scrollY), { passive: true });
+
+  /* ---------------------------------------------------------------------------
+     Work rows — floating image preview that follows cursor (desktop)
+     --------------------------------------------------------------------------- */
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const workRows = document.querySelectorAll('.work-row');
+    workRows.forEach(row => {
+      const media = row.querySelector('.work-media');
+      if (!media) return;
+      let raf = null;
+      let lastX = 0, lastY = 0;
+      const move = (e) => {
+        lastX = e.clientX; lastY = e.clientY;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          media.style.transform = `translate(${lastX}px, ${lastY}px) translate(-50%, -50%) scale(1)`;
+          raf = null;
+        });
+      };
+      row.addEventListener('mouseenter', () => row.classList.add('preview-active'));
+      row.addEventListener('mousemove', move);
+      row.addEventListener('mouseleave', () => {
+        row.classList.remove('preview-active');
+        media.style.transform = `translate(${lastX}px, ${lastY}px) translate(-50%, -50%) scale(0.85)`;
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------------
+     Modal
+     --------------------------------------------------------------------------- */
   const modal = document.getElementById('consultationModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalSubtitle = document.getElementById('modalSubtitle');
-  const openModalBtns = document.querySelectorAll('.trigger-modal');
-  const closeModalBtn = document.querySelector('.modal-close');
   const modalForm = document.getElementById('modalForm');
+  const closeBtn = modal ? modal.querySelector('.modal-close') : null;
 
-  const openModal = (title = "Get Free Consultation", subtitle = "Tell me about your business and website goals. I'll get back to you with a strategic plan.") => {
+  const openModal = (title = 'Get Free Consultation', subtitle = "Tell me about your business and website goals. I'll get back to you with a strategic plan.") => {
+    if (!modal) return;
     modalTitle.textContent = title;
     modalSubtitle.textContent = subtitle;
     modal.classList.add('open');
+    if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
   };
-
   const closeModal = () => {
+    if (!modal) return;
     modal.classList.remove('open');
+    if (lenis) lenis.start();
     document.body.style.overflow = '';
-    modalForm.reset();
+    modalForm && modalForm.reset();
   };
 
-  openModalBtns.forEach(btn => {
+  document.querySelectorAll('.trigger-modal').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const actionText = btn.getAttribute('data-cta') || "Get Free Consultation";
-      openModal(actionText);
+      openModal(btn.getAttribute('data-cta') || 'Get Free Consultation');
     });
   });
-
-  closeModalBtn.addEventListener('click', closeModal);
-  modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-
-  // Close modal on Escape key
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+  modal && modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
-    }
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
   });
 
-  // --- Collapsible FAQ Accordion ---
+  /* ---------------------------------------------------------------------------
+     FAQ accordion
+     --------------------------------------------------------------------------- */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const trigger = item.querySelector('.faq-trigger');
     const content = item.querySelector('.faq-content');
-    
     trigger.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      
-      // Close all open FAQs
       faqItems.forEach(i => {
         i.classList.remove('active');
+        i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
         i.querySelector('.faq-content').style.maxHeight = null;
       });
-      
       if (!isActive) {
         item.classList.add('active');
+        trigger.setAttribute('aria-expanded', 'true');
         content.style.maxHeight = content.scrollHeight + 'px';
       }
     });
   });
 
-  // --- Form submission & validation ---
+  /* ---------------------------------------------------------------------------
+     Toast + form handling
+     --------------------------------------------------------------------------- */
   const toast = document.getElementById('toast');
   const showToast = (message) => {
-    const toastText = toast.querySelector('.toast-text');
-    toastText.textContent = message;
+    if (!toast) return;
+    toast.querySelector('.toast-text').textContent = message;
     toast.classList.add('show');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 4000);
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove('show'), 4000);
   };
 
   const handleFormSubmit = (form, isModal = false) => {
+    if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      // Standard local validation checks
       const name = form.querySelector('[name="name"]').value.trim();
       const email = form.querySelector('[name="email"]').value.trim();
-      const phone = form.querySelector('[name="phone"]').value.trim();
       const details = form.querySelector('[name="details"]').value.trim();
-      
-      if (!name || !email || !details) {
-        showToast("⚠️ Please fill in all required fields.");
-        return;
-      }
-      
-      // Simple email check
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showToast("⚠️ Please enter a valid email address.");
-        return;
-      }
-
-      // Change button state to submitting
+      if (!name || !email || !details) { showToast('Please fill in all required fields.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast('Please enter a valid email address.'); return; }
       const submitBtn = form.querySelector('[type="submit"]');
-      const originalText = submitBtn.textContent;
+      const original = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.textContent = "Sending details...";
-      
-      // Fake API request simulation
+      submitBtn.textContent = 'Sending…';
       setTimeout(() => {
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        showToast("✅ Thank you! Your request has been sent successfully.");
+        submitBtn.innerHTML = original;
+        showToast('Thank you! Your request has been sent successfully.');
         form.reset();
-        if (isModal) {
-          closeModal();
-        }
-      }, 1500);
+        if (isModal) closeModal();
+      }, 1400);
     });
   };
+  handleFormSubmit(document.getElementById('contactForm'), false);
+  handleFormSubmit(modalForm, true);
 
-  const contactSectionForm = document.getElementById('contactForm');
-  if (contactSectionForm) handleFormSubmit(contactSectionForm, false);
-  if (modalForm) handleFormSubmit(modalForm, true);
+  // Footer newsletter
+  const newsForm = document.getElementById('newsForm');
+  if (newsForm) {
+    newsForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = newsForm.querySelector('input').value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { showToast('Please enter a valid email address.'); return; }
+      newsForm.reset();
+      showToast('Subscribed successfully!');
+    });
+  }
 
-  // --- Stats Animation (Counter) ---
+  /* ---------------------------------------------------------------------------
+     Stat counters
+     --------------------------------------------------------------------------- */
   const stats = document.querySelectorAll('.stat-number');
-  const animateStats = () => {
-    stats.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-target'), 10);
-      const suffix = stat.getAttribute('data-suffix') || "";
-      let count = 0;
-      const speed = target / 30; // duration control
-      
-      const updateCount = () => {
-        if (count < target) {
-          count = Math.ceil(count + speed);
-          if (count > target) count = target;
-          stat.textContent = count + suffix;
-          setTimeout(updateCount, 40);
-        } else {
-          stat.textContent = target + suffix;
-        }
-      };
-      updateCount();
-    });
+  const animateStat = (el) => {
+    const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1600;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.textContent = Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    };
+    requestAnimationFrame(tick);
   };
-
-  // Intersection observer for triggers
-  const statsSection = document.getElementById('about');
-  if (statsSection) {
-    let animated = false;
-    const observer = new IntersectionObserver((entries) => {
+  if (stats.length && 'IntersectionObserver' in window) {
+    const statIo = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animateStats();
-          animated = true;
-        }
+        if (entry.isIntersecting) { animateStat(entry.target); statIo.unobserve(entry.target); }
       });
-    }, { threshold: 0.2 });
-    
-    observer.observe(statsSection);
+    }, { threshold: 0.5 });
+    stats.forEach(s => statIo.observe(s));
+  } else {
+    stats.forEach(s => animateStat(s));
   }
 
-  // ========== NEW ANIMATION FEATURES ==========
-
-  // --- 1. Typewriter Effect for Hero H1 ---
-  const typewriterEl = document.querySelector('.typewriter-text');
-  if (typewriterEl) {
-    const text = 'Professional Websites That Help Businesses Grow';
-    let i = 0;
-    const typeSpeed = 50;
-    function typeWriter() {
-      if (i < text.length) {
-        typewriterEl.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, typeSpeed);
-      } else {
-        document.querySelectorAll('.hero-element').forEach(el => el.classList.add('visible'));
-      }
-    }
-    setTimeout(typeWriter, 500);
-  }
-
-  // --- 2. Pricing Monthly/Yearly Toggle ---
-  const toggleBtns = document.querySelectorAll('.pricing-toggle-btn');
-  const priceEls = document.querySelectorAll('.price[data-monthly]');
-  const periodEls = document.querySelectorAll('.pricing-period');
-
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      toggleBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const plan = btn.dataset.plan;
-      priceEls.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-          el.textContent = el.dataset[plan];
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, 200);
-      });
-      periodEls.forEach(el => {
-        el.textContent = el.dataset[plan];
-      });
-    });
-  });
-
-  // --- 3. Scroll Reveal (IntersectionObserver) ---
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  // --- 4. Dock Navigation Active State ---
-  const dockItems = document.querySelectorAll('.dock-nav-item');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    document.querySelectorAll('section[id]').forEach(section => {
-      const sectionTop = section.offsetTop - 200;
-      if (window.pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-    dockItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === '#' + current) {
-        item.classList.add('active');
-      }
-    });
-  });
-
-  // --- 5. Parallax on Hero Blobs ---
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    document.querySelectorAll('.shape-blob').forEach((blob, i) => {
-      const speed = i === 0 ? 0.3 : 0.2;
-      blob.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  });
-
-  // --- 6. Magnetic Button Hover (Desktop Only) ---
-  if (window.innerWidth > 768) {
-    document.querySelectorAll('.btn-primary, .btn-accent').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
-    });
-  }
-
-  // --- 7. Card Glow Effect (Mouse-Following) ---
-  document.querySelectorAll('.service-card, .pricing-card, .portfolio-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--glow-x', x + 'px');
-      card.style.setProperty('--glow-y', y + 'px');
-    });
-  });
 });

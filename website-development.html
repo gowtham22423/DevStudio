@@ -7,7 +7,7 @@
   <meta name="description" content="Fast, responsive, and scalable website development using modern standards and clean code structures.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script>
     if (localStorage.getItem('devstudio_logged_in') !== 'true') {
@@ -23,167 +23,96 @@
     }
   </script>
   <style>
-    .service-hero {
-      padding: 10rem 0 6rem;
-      background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.06), transparent 50%);
-    }
-    .service-detail-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .feature-list {
-      list-style: none;
-      margin: 2rem 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .feature-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-weight: 500;
-    }
-    .feature-list-icon {
-      color: var(--primary-color);
-      flex-shrink: 0;
-    }
-    @media (max-width: 968px) {
-      .service-detail-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-    }
+  .service-hero { padding: 11rem 0 6rem; }
+  .service-detail-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: clamp(2rem,5vw,5rem); align-items: start; }
+  .svc-back { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.85rem; color:var(--ink-70); margin-bottom:2rem; transition:color .3s var(--ease); }
+  .svc-back:hover { color:var(--ink); }
+  .svc-title { font-family:var(--font-display); font-weight:340; font-size:clamp(2.5rem,7vw,5.5rem); line-height:1.0; letter-spacing:-0.03em; margin-bottom:1.5rem; }
+  .svc-lede { font-size:clamp(1.05rem,1.6vw,1.35rem); color:var(--ink-70); line-height:1.5; max-width:40rem; margin-bottom:3rem; }
+  .svc-sub { font-family:var(--font-display); font-weight:400; font-size:1.6rem; letter-spacing:-0.02em; margin-bottom:1.5rem; }
+  .feature-list { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2.5rem; margin-bottom:2rem; }
+  .feature-list-item { padding-top:1.25rem; border-top:1px solid var(--line); }
+  .feature-list-item strong { font-family:var(--font-display); font-weight:500; font-size:1.15rem; display:block; margin-bottom:0.4rem; letter-spacing:-0.01em; }
+  .feature-list-item p { font-size:0.9rem; color:var(--ink-70); }
+  .svc-form-card { border:1px solid var(--line); border-radius:6px; padding:clamp(1.75rem,3vw,2.5rem); position:sticky; top:6rem; }
+  .svc-form-card h3 { font-family:var(--font-display); font-weight:400; font-size:1.5rem; letter-spacing:-0.02em; margin-bottom:0.5rem; }
+  .svc-form-card > p { font-size:0.9rem; color:var(--ink-70); margin-bottom:1.75rem; }
+  .svc-form-card form { display:flex; flex-direction:column; gap:1.25rem; }
+  @media (max-width:968px){ .service-detail-grid{ grid-template-columns:1fr; gap:3rem; } .feature-list{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 
-  <!-- Sticky Header Navigation -->
-  <header class="scrolled">
-    <div class="container nav-wrapper">
-      <a href="index.html" class="logo">
-        DevStudio<span class="logo-dot"></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html#hero">Home</a></li>
-        <li><a href="index.html#services" class="active">Services</a></li>
-        <li><a href="index.html#portfolio">Work</a></li>
-        <li><a href="index.html#why-choose-me">Why Me</a></li>
-        <li><a href="index.html#process">Process</a></li>
-        <li><a href="index.html#testimonials">Reviews</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="login.html" class="nav-login-link">Login</a></li>
-      </ul>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <header id="header" class="scrolled">
+    <div class="shell nav-wrapper">
+      <a href="index.html" class="logo">DevStudio<span class="logo-mark">®</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#services" class="active">Services</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="login.html" class="nav-login-link">Login</a>
+        <a href="index.html#contact" class="nav-contact">Contact <span class="arrow">¬</span></a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu"><span></span><span></span></button>
     </div>
   </header>
 
-  <!-- Service Hero Section -->
   <section class="service-hero">
-    <div class="container">
-      <a href="index.html#services" class="btn-link" style="margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+    <div class="shell">
+      <a href="index.html#services" class="svc-back">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back to Services
       </a>
       <div class="service-detail-grid">
         <div>
           <span class="badge">Development</span>
-          <h1 style="font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.02em;">Website Development</h1>
-          <p class="section-desc" style="margin-bottom: 2rem; font-size: 1.2rem; line-height: 1.7;">
-            I translate visual UI assets into clean, lightweight, semantic front-end code. Built mobile-first to execute with minimal page weights, your website will satisfy modern browser performance standards and rank higher on SEO indexes.
-          </p>
-
-          <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">What You Get with this Service:</h3>
+          <h1 class="svc-title">Website Development</h1>
+          <p class="svc-lede">I translate visual UI assets into clean, lightweight, semantic front-end code. Built mobile-first to execute with minimal page weights, your website will satisfy modern browser performance standards and rank higher on SEO indexes.</p>
+          <h3 class="svc-sub">What You Get with this Service:</h3>
           <ul class="feature-list">
             <li class="feature-list-item">
-              <span class="feature-list-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <div>
-                <strong>Modern Tech Stacks</strong>
-                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Built using modern frameworks like React, Next.js, or lightweight HTML5/CSS3 structures.</p>
-              </div>
+              <strong>Modern Tech Stacks</strong>
+              <p>Built using modern frameworks like React, Next.js, or lightweight HTML5/CSS3 structures.</p>
             </li>
             <li class="feature-list-item">
-              <span class="feature-list-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <div>
-                <strong>Optimized Page Loading</strong>
-                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Image optimization, lazy loading, and asset minifications to ensure instant page responses.</p>
-              </div>
+              <strong>Optimized Page Loading</strong>
+              <p>Image optimization, lazy loading, and asset minifications to ensure instant page responses.</p>
             </li>
             <li class="feature-list-item">
-              <span class="feature-list-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <div>
-                <strong>SEO Semantic Syntax</strong>
-                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Valid HTML5 tags and descriptive headers optimized for indexers.</p>
-              </div>
+              <strong>SEO Semantic Syntax</strong>
+              <p>Valid HTML5 tags and descriptive headers optimized for indexers.</p>
             </li>
             <li class="feature-list-item">
-              <span class="feature-list-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              </span>
-              <div>
-                <strong>Secure Codebases</strong>
-                <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.25rem;">Clean coding standards that prevent browser vulnerabilities.</p>
-              </div>
+              <strong>Secure Codebases</strong>
+              <p>Clean coding standards that prevent browser vulnerabilities.</p>
             </li>
           </ul>
         </div>
-
-        <!-- Sidebar Inquiry Form -->
-        <div class="contact-card" style="position: sticky; top: 6rem;">
-          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Request Development</h3>
-          <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">Send over your project details to get a free custom quote.</p>
-          <form id="serviceForm" class="contact-form" novalidate>
+        <div class="svc-form-card">
+          <h3>Request Development</h3>
+          <p>Send over your project details to get a free custom quote.</p>
+          <form id="serviceForm" novalidate>
             <input type="hidden" name="service" value="Website Development">
-            <div class="form-group">
-              <label for="s-name">Full Name *</label>
-              <input type="text" id="s-name" name="name" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label for="s-email">Email Address *</label>
-              <input type="email" id="s-email" name="email" placeholder="john@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="s-phone">Phone Number</label>
-              <input type="tel" id="s-phone" name="phone" placeholder="+91 XXXXX XXXXX">
-            </div>
-            <div class="form-group">
-              <label for="s-details">Project Features / Integrations *</label>
-              <textarea id="s-details" name="details" placeholder="Describe the integrations required (APIs, custom filters, CRM tools...)" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-submit" style="width: 100%;">Get Development Quote</button>
+            <div class="field"><label for="s-name">Full Name *</label><input type="text" id="s-name" name="name" placeholder="John Doe" required></div>
+            <div class="field"><label for="s-email">Email Address *</label><input type="email" id="s-email" name="email" placeholder="john@example.com" required></div>
+            <div class="field"><label for="s-phone">Phone Number</label><input type="tel" id="s-phone" name="phone" placeholder="+91 XXXXX XXXXX"></div>
+            <div class="field"><label for="s-details">Project Features / Integrations *</label><textarea id="s-details" name="details" placeholder="Describe the integrations required (APIs, custom filters, CRM tools...)" required></textarea></div>
+            <button type="submit" class="btn-line btn-submit">Get Development Quote <span class="arrow">¬</span></button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Success Toast Alert Component -->
-  <div id="toast" class="toast" role="alert" aria-live="assertive">
-    <span class="toast-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-    </span>
-    <span class="toast-text">Message sent successfully!</span>
-  </div>
+  <div id="toast" class="toast" role="alert" aria-live="assertive"><span class="toast-text">Message sent successfully!</span></div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-bottom" style="border-top: none; padding-top: 0;">
-      <p>© 2026 DevStudio. All Rights Reserved.</p>
-      <p>Designed for High Conversion & Performance.</p>
+  <footer class="footer" style="padding:3rem 0;">
+    <div class="shell footer-bottom" style="border:none;padding-top:0;">
+      <span>© 2026 DevStudio. All Rights Reserved.</span>
+      <span>Designed for high conversion &amp; performance.</span>
     </div>
   </footer>
 
@@ -191,36 +120,22 @@
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('serviceForm');
       const toast = document.getElementById('toast');
-
       const showToast = (message) => {
         const toastText = toast.querySelector('.toast-text');
         toastText.textContent = message;
         toast.classList.add('show');
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 4000);
+        setTimeout(() => { toast.classList.remove('show'); }, 4000);
       };
-
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = form.querySelector('[name="name"]').value.trim();
         const email = form.querySelector('[name="email"]').value.trim();
         const details = form.querySelector('[name="details"]').value.trim();
-
-        if (!name || !email || !details) {
-          showToast("⚠️ Please fill in all required fields.");
-          return;
-        }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          showToast("⚠️ Please enter a valid email address.");
-          return;
-        }
-
+        if (!name || !email || !details) { showToast("⚠️ Please fill in all required fields."); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showToast("⚠️ Please enter a valid email address."); return; }
         const submitBtn = form.querySelector('[type="submit"]');
         submitBtn.disabled = true;
         submitBtn.textContent = "Submitting details...";
-
         setTimeout(() => {
           submitBtn.disabled = false;
           submitBtn.textContent = "Get Development Quote";
