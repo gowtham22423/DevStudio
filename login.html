@@ -79,6 +79,11 @@
 </head>
 <body class="login-body">
 
+  <!-- Animated Background Blobs -->
+  <div class="login-bg-blob login-bg-blob-1"></div>
+  <div class="login-bg-blob login-bg-blob-2"></div>
+  <div class="login-bg-blob login-bg-blob-3"></div>
+
   <!-- Back to Home Link -->
   <a href="index.html" class="back-home">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -343,6 +348,12 @@
       const otpInputs = document.querySelectorAll('.otp-digit');
       otpInputs.forEach((input, index) => {
         input.addEventListener('keyup', (e) => {
+          // Visual filled-state feedback
+          if (e.target.value.length === 1) {
+            e.target.classList.add('filled');
+          } else {
+            e.target.classList.remove('filled');
+          }
           if (e.target.value.length === 1 && index < otpInputs.length - 1) {
             otpInputs[index + 1].focus();
           }
