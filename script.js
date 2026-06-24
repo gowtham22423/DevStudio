@@ -238,4 +238,114 @@ document.addEventListener('DOMContentLoaded', () => {
     
     observer.observe(statsSection);
   }
+
+  // ========== NEW ANIMATION FEATURES ==========
+
+  // --- 1. Typewriter Effect for Hero H1 ---
+  const typewriterEl = document.querySelector('.typewriter-text');
+  if (typewriterEl) {
+    const text = 'Professional Websites That Help Businesses Grow';
+    let i = 0;
+    const typeSpeed = 50;
+    function typeWriter() {
+      if (i < text.length) {
+        typewriterEl.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, typeSpeed);
+      } else {
+        document.querySelectorAll('.hero-element').forEach(el => el.classList.add('visible'));
+      }
+    }
+    setTimeout(typeWriter, 500);
+  }
+
+  // --- 2. Pricing Monthly/Yearly Toggle ---
+  const toggleBtns = document.querySelectorAll('.pricing-toggle-btn');
+  const priceEls = document.querySelectorAll('.price[data-monthly]');
+  const periodEls = document.querySelectorAll('.pricing-period');
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const plan = btn.dataset.plan;
+      priceEls.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          el.textContent = el.dataset[plan];
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200);
+      });
+      periodEls.forEach(el => {
+        el.textContent = el.dataset[plan];
+      });
+    });
+  });
+
+  // --- 3. Scroll Reveal (IntersectionObserver) ---
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // --- 4. Dock Navigation Active State ---
+  const dockItems = document.querySelectorAll('.dock-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('section[id]').forEach(section => {
+      const sectionTop = section.offsetTop - 200;
+      if (window.pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    dockItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === '#' + current) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // --- 5. Parallax on Hero Blobs ---
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    document.querySelectorAll('.shape-blob').forEach((blob, i) => {
+      const speed = i === 0 ? 0.3 : 0.2;
+      blob.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+
+  // --- 6. Magnetic Button Hover (Desktop Only) ---
+  if (window.innerWidth > 768) {
+    document.querySelectorAll('.btn-primary, .btn-accent').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  // --- 7. Card Glow Effect (Mouse-Following) ---
+  document.querySelectorAll('.service-card, .pricing-card, .portfolio-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--glow-x', x + 'px');
+      card.style.setProperty('--glow-y', y + 'px');
+    });
+  });
 });
