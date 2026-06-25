@@ -135,6 +135,7 @@ export type Project = {
   year: string;
   highlights: string[];
   href: string;
+  image?: string; // drop a /public path here later to replace the gradient placeholder
 };
 
 export const projects: Project[] = [

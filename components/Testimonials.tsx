@@ -66,7 +66,7 @@ export function Testimonials() {
 
 export function StatsRow() {
   return (
-    <div className="shell grid grid-cols-3 gap-4">
+    <div className="shell grid grid-cols-3 gap-3 sm:gap-4">
       {stats.map((s) => (
         <div key={s.label} className="bg-card rounded-4xl p-6 text-center">
           <Counter target={s.target} suffix={s.suffix} />
@@ -88,7 +88,7 @@ export function About() {
             I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers.
           </p>
         </FadeUp>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4">
           {stats.map((s) => (
             <div key={s.label} className="bg-card rounded-4xl p-6 text-center">
               <Counter target={s.target} suffix={s.suffix} />
