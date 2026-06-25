@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { EASE_PREMIUM } from "./FadeUp";
 
 export default function ServiceForm({
-  heading, detailsLabel, buttonText, serviceName,
-}: { heading: string; detailsLabel: string; buttonText: string; serviceName: string }) {
+  heading, detailsLabel, buttonText, serviceName, accent = "#7a40ed",
+}: { heading: string; detailsLabel: string; buttonText: string; serviceName: string; accent?: string }) {
   const [toast, setToast] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
 
@@ -46,7 +46,7 @@ export default function ServiceForm({
           <span className="text-xs font-semibold uppercase tracking-wider text-muted-soft">{detailsLabel}</span>
           <textarea name="details" rows={4} placeholder="Tell me about your project..." className="bg-paper border border-black/10 rounded-2xl px-4 py-3 outline-none focus:border-purple focus:ring-2 focus:ring-purple/15 transition resize-y" />
         </label>
-        <button type="submit" disabled={sending} className="bg-purple text-white py-3.5 rounded-full font-semibold hover:bg-purple-dark transition-all duration-300 ease-premium disabled:opacity-60">
+        <button type="submit" disabled={sending} style={{ background: accent }} className="text-white py-3.5 rounded-full font-semibold transition-all duration-300 ease-premium hover:-translate-y-0.5 disabled:opacity-60">
           {sending ? "Sending…" : buttonText}
         </button>
       </form>

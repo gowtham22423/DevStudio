@@ -6,6 +6,8 @@ export type Service = {
   name: string;
   short: string;
   badge: string;
+  accent: string;
+  gradient: string;
   lede: string;
   features: { title: string; desc: string }[];
   formHeading: string;
@@ -21,6 +23,8 @@ export const services: Service[] = [
     short:
       "Custom modern UI/UX designs crafted specifically for your target audience and tailored to achieve your unique business goals.",
     badge: "UI/UX Design",
+    accent: "#7a40ed",
+    gradient: "linear-gradient(135deg, #7a40ed 0%, #29a9ff 100%)",
     lede: "I build custom, visually striking interfaces focused entirely on user behavior and brand authority. By combining modern aesthetics with intuitive usability principles, your site will stand out and command trust from the very first visit.",
     features: [
       { title: "Custom Brand Aesthetics", desc: "Tailored styles, palettes, and typography matching your business theme." },
@@ -39,6 +43,8 @@ export const services: Service[] = [
     short:
       "Fast-loading, clean-coded, fully responsive, and highly scalable websites built using the latest web standards.",
     badge: "Development",
+    accent: "#29a9ff",
+    gradient: "linear-gradient(135deg, #29a9ff 0%, #7a40ed 100%)",
     lede: "I engineer fast, secure, and scalable websites with clean, maintainable code. Built on modern frameworks and best practices, your site will load instantly and grow effortlessly with your business.",
     features: [
       { title: "Modern Tech Stacks", desc: "React, Next.js, and other current frameworks for robust builds." },
@@ -57,6 +63,8 @@ export const services: Service[] = [
     short:
       "High-converting single-page campaigns built with crisp messaging, modern structures, and optimal performance for paid ads.",
     badge: "Lead Generation",
+    accent: "#fd3456",
+    gradient: "linear-gradient(135deg, #fd3456 0%, #7a40ed 100%)",
     lede: "I craft high-converting landing pages engineered for paid campaigns. Every section is structured to capture attention, build trust, and drive a single decisive action.",
     features: [
       { title: "A/B Test Ready Structures", desc: "Built to experiment with variants and maximize conversions." },
@@ -75,6 +83,8 @@ export const services: Service[] = [
     short:
       "Fully secure online stores featuring smooth payment gateway integrations, seamless checkout funnels, and easy product managers.",
     badge: "E-Commerce",
+    accent: "#7a40ed",
+    gradient: "linear-gradient(135deg, #7a40ed 0%, #fd3456 100%)",
     lede: "I build secure, conversion-focused online stores with seamless checkout experiences. From catalog to payment, every step is optimized to turn browsers into buyers.",
     features: [
       { title: "Secure Payment Gateways", desc: "Stripe and other trusted integrations with smooth checkout." },
@@ -93,6 +103,8 @@ export const services: Service[] = [
     short:
       "Transform your outdated, slow, or low-performing website into a premium, modern experience that captures attention and retains clients.",
     badge: "Redesign",
+    accent: "#29a9ff",
+    gradient: "linear-gradient(135deg, #29a9ff 0%, #fd3456 100%)",
     lede: "I transform outdated, slow websites into premium modern experiences. By auditing performance and bounce points, I rebuild your site to capture attention and retain clients.",
     features: [
       { title: "Speed Boost Implementations", desc: "Performance overhauls that cut load times dramatically." },
@@ -111,6 +123,8 @@ export const services: Service[] = [
     short:
       "Rest easy with regular updates, scheduled secure database backups, malware scans, performance checks, and ongoing support.",
     badge: "Support",
+    accent: "#fd3456",
+    gradient: "linear-gradient(135deg, #fd3456 0%, #19171c 100%)",
     lede: "I keep your website secure, fast, and up to date with ongoing maintenance. From backups to malware scans and content updates, your site stays healthy while you focus on business.",
     features: [
       { title: "Automated Database Backups", desc: "Scheduled secure backups so you never lose data." },
@@ -162,6 +176,7 @@ export const projects: Project[] = [
     year: "2025",
     highlights: ["Interactive map search", "Real-time scheduling", "Photography carousel"],
     href: "/services/website-development",
+    image: "/work-realestate.png",
   },
   {
     title: "Fitness Landing Page",
@@ -174,6 +189,7 @@ export const projects: Project[] = [
     year: "2024",
     highlights: ["Membership signup funnel", "Class booking flow", "Coaching program upsell"],
     href: "/services/landing-pages",
+    image: "/work-fitness.png",
   },
   {
     title: "Ecommerce Store",
@@ -186,6 +202,7 @@ export const projects: Project[] = [
     year: "2025",
     highlights: ["Stripe checkout", "Dynamic cart", "Invoice generation"],
     href: "/services/ecommerce-stores",
+    image: "/work-ecommerce.png",
   },
   {
     title: "SaaS Dashboard",
@@ -198,6 +215,7 @@ export const projects: Project[] = [
     year: "2025",
     highlights: ["Interactive charts", "Role-based permissions", "Drag-and-drop reports"],
     href: "/services/website-development",
+    image: "/work-saas.png",
   },
   {
     title: "Local Business Website",
@@ -210,6 +228,7 @@ export const projects: Project[] = [
     year: "2024",
     highlights: ["Local SEO optimization", "Team profiles", "Lead capture forms"],
     href: "/services/website-redesign",
+    image: "/work-localbiz.png",
   },
 ];
 
