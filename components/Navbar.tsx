@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/lib/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -14,6 +16,8 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
     <header
@@ -31,7 +35,9 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted hover:text-ink px-3.5 py-2 rounded-full hover:bg-card transition-colors duration-300"
+              className={`text-sm font-medium px-3.5 py-2 rounded-full transition-colors duration-300 ${
+                isActive(item.href) ? "text-ink bg-card" : "text-muted hover:text-ink hover:bg-card"
+              }`}
             >
               {item.label}
             </Link>
@@ -43,7 +49,7 @@ export default function Navbar() {
             Login
           </Link>
           <Link
-            href="/#contact"
+            href="/contact"
             className="text-sm font-semibold bg-purple text-white px-4 py-2 rounded-full hover:bg-purple-dark hover:-translate-y-0.5 transition-all duration-300 ease-premium"
           >
             Get Free Consultation
@@ -72,7 +78,7 @@ export default function Navbar() {
             key={item.href}
             href={item.href}
             onClick={() => setOpen(false)}
-            className="text-3xl font-semibold tracking-tightest py-2"
+            className={`text-3xl font-semibold tracking-tightest py-2 ${isActive(item.href) ? "text-purple" : ""}`}
           >
             {item.label}
           </Link>
@@ -81,7 +87,7 @@ export default function Navbar() {
           Login
         </Link>
         <Link
-          href="/#contact"
+          href="/contact"
           onClick={() => setOpen(false)}
           className="mt-4 bg-purple text-white px-6 py-3 rounded-full font-semibold"
         >

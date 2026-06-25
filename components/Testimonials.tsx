@@ -64,6 +64,19 @@ export function Testimonials() {
   );
 }
 
+export function StatsRow() {
+  return (
+    <div className="shell grid grid-cols-3 gap-4">
+      {stats.map((s) => (
+        <div key={s.label} className="bg-card rounded-4xl p-6 text-center">
+          <Counter target={s.target} suffix={s.suffix} />
+          <span className="block text-sm text-muted mt-2">{s.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function About() {
   return (
     <section id="about" className="py-24 md:py-32 scroll-mt-24">

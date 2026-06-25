@@ -44,13 +44,13 @@ export default function Hero() {
 
         <motion.div variants={item} className="flex flex-wrap gap-3 justify-center mt-9">
           <Link
-            href="/#contact"
+            href="/contact"
             className="bg-purple text-white px-7 py-3.5 rounded-full font-semibold hover:bg-purple-dark hover:-translate-y-0.5 transition-all duration-300 ease-premium"
           >
             Get Free Consultation
           </Link>
           <Link
-            href="/#work"
+            href="/work"
             className="border border-black/15 px-7 py-3.5 rounded-full font-semibold hover:bg-ink hover:text-white transition-all duration-300 ease-premium"
           >
             View My Work

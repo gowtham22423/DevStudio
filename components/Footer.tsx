@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-wrap items-center justify-between gap-6 pb-14 border-b border-white/10">
           <h2 className="display text-4xl md:text-5xl max-w-xl">Have a project in mind?</h2>
           <Link
-            href="/#contact"
+            href="/contact"
             className="bg-purple text-white px-6 py-3.5 rounded-full font-semibold hover:bg-purple-dark hover:-translate-y-0.5 transition-all duration-300 ease-premium"
           >
             Get Free Consultation
@@ -34,7 +34,7 @@ export default function Footer() {
                 {item.label}
               </Link>
             ))}
-            <Link href="/#contact" className="text-sm text-white/75 hover:text-purple transition-colors w-fit">Contact</Link>
+            <Link href="/contact" className="text-sm text-white/75 hover:text-purple transition-colors w-fit">Contact</Link>
           </div>
 
           <div className="flex flex-col gap-3">

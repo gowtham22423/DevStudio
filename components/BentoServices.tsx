@@ -16,18 +16,19 @@ const spans = [
   "md:col-span-2",
 ];
 
-export default function BentoServices() {
+export default function BentoServices({ bare = false }: { bare?: boolean }) {
   return (
-    <section id="services" className="py-24 md:py-32 bg-card scroll-mt-24">
+    <section id="services" className={`${bare ? "pb-24 md:pb-32" : "py-24 md:py-32 bg-card"} scroll-mt-24`}>
       <div className="shell">
-        <FadeUp className="max-w-2xl mb-14">
-          <span className="text-sm font-semibold uppercase tracking-wider text-purple">Services</span>
-          <h2 className="display text-4xl md:text-6xl mt-3">End-to-end web design &amp; development.</h2>
-          <p className="text-muted text-lg mt-4">
-            I provide end-to-end web design and development solutions tailored to grow your business, increase brand trust, and convert visitors into active customers.
-          </p>
-        </FadeUp>
-
+        {!bare && (
+          <FadeUp className="max-w-2xl mb-14">
+            <span className="text-sm font-semibold uppercase tracking-wider text-purple">Services</span>
+            <h2 className="display text-4xl md:text-6xl mt-3">End-to-end web design &amp; development.</h2>
+            <p className="text-muted text-lg mt-4">
+              I provide end-to-end web design and development solutions tailored to grow your business, increase brand trust, and convert visitors into active customers.
+            </p>
+          </FadeUp>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 auto-rows-fr">
           {services.map((s, i) => (
             <motion.div

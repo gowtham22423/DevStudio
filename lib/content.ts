@@ -129,8 +129,11 @@ export type Project = {
   category: string;
   summary: string;
   tech: string[];
-  image?: string;
-  gradient?: string;
+  gradient: string;
+  monogram: string;
+  scope: string;
+  year: string;
+  highlights: string[];
   href: string;
 };
 
@@ -140,7 +143,11 @@ export const projects: Project[] = [
     category: "Restaurant",
     summary: "A clean culinary showcase featuring an interactive reservation engine, digital menu manager, and social integrations.",
     tech: ["React", "CSS Grid", "GSAP"],
-    image: "/restaurant_mockup.png",
+    gradient: "linear-gradient(135deg, #7a40ed 0%, #29a9ff 100%)",
+    monogram: "RW",
+    scope: "Design & Development",
+    year: "2025",
+    highlights: ["Interactive reservation engine", "Digital menu manager", "Social media integrations"],
     href: "/services/website-design",
   },
   {
@@ -148,7 +155,11 @@ export const projects: Project[] = [
     category: "Real Estate",
     summary: "Searchable directory with interactive map search, real-time consultation scheduling, and high-quality photography carousel layout.",
     tech: ["NextJS", "Mapbox", "Flexbox"],
-    image: "/real_estate_mockup.png",
+    gradient: "linear-gradient(135deg, #29a9ff 0%, #7a40ed 100%)",
+    monogram: "RE",
+    scope: "Development & SEO",
+    year: "2025",
+    highlights: ["Interactive map search", "Real-time scheduling", "Photography carousel"],
     href: "/services/website-development",
   },
   {
@@ -156,7 +167,11 @@ export const projects: Project[] = [
     category: "Wellness",
     summary: "High-performance landing page geared to maximize gym membership signups, class bookings, and premium coaching programs.",
     tech: ["HTML5", "Vanilla CSS", "AOS"],
-    gradient: "linear-gradient(135deg, #7a40ed, #29a9ff)",
+    gradient: "linear-gradient(135deg, #fd3456 0%, #7a40ed 100%)",
+    monogram: "PF",
+    scope: "Landing Page",
+    year: "2024",
+    highlights: ["Membership signup funnel", "Class booking flow", "Coaching program upsell"],
     href: "/services/landing-pages",
   },
   {
@@ -164,7 +179,11 @@ export const projects: Project[] = [
     category: "Retail",
     summary: "Fast storefront featuring responsive product catalog, dynamic cart interface, Stripe checkout integration, and invoice generation.",
     tech: ["React", "Stripe SDK", "Redux"],
-    gradient: "linear-gradient(135deg, #fd3456, #7a40ed)",
+    gradient: "linear-gradient(135deg, #7a40ed 0%, #fd3456 100%)",
+    monogram: "LW",
+    scope: "E-Commerce Build",
+    year: "2025",
+    highlights: ["Stripe checkout", "Dynamic cart", "Invoice generation"],
     href: "/services/ecommerce-stores",
   },
   {
@@ -172,7 +191,11 @@ export const projects: Project[] = [
     category: "SaaS",
     summary: "A complex analytical board with interactive charts, user permissions settings, drag-and-drop report layout, and dark mode.",
     tech: ["VueJS", "ChartJS", "Tailwind"],
-    image: "/saas_mockup.png",
+    gradient: "linear-gradient(135deg, #19171c 0%, #7a40ed 100%)",
+    monogram: "SD",
+    scope: "Product UI/UX",
+    year: "2025",
+    highlights: ["Interactive charts", "Role-based permissions", "Drag-and-drop reports"],
     href: "/services/website-development",
   },
   {
@@ -180,7 +203,11 @@ export const projects: Project[] = [
     category: "Healthcare",
     summary: "Fully optimized local search platform highlighting services, interactive team profiles, client reviews, and direct email lead captures.",
     tech: ["WordPress", "Elementor", "Yoast SEO"],
-    gradient: "linear-gradient(135deg, #29a9ff, #7a40ed)",
+    gradient: "linear-gradient(135deg, #29a9ff 0%, #fd3456 100%)",
+    monogram: "AD",
+    scope: "Redesign & Local SEO",
+    year: "2024",
+    highlights: ["Local SEO optimization", "Team profiles", "Lead capture forms"],
     href: "/services/website-redesign",
   },
 ];
@@ -267,12 +294,11 @@ export const faqs = [
 ];
 
 export const nav = [
-  { label: "Work", href: "/#work" },
-  { label: "Services", href: "/#services" },
-  { label: "Process", href: "/#process" },
-  { label: "Pricing", href: "/#pricing" },
-  { label: "About", href: "/#about" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Process", href: "/process" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
 ];
 
 export const contact = {
@@ -280,3 +306,30 @@ export const contact = {
   phone: "+91 XXXXX XXXXX",
   location: "India",
 };
+
+// Expanded process detail for the dedicated /process page
+export const processDetail = [
+  { num: "01", title: "Discovery Call", desc: "Aligning on goals & scope", detail: "We start with a focused conversation about your business, target audience, and goals. I map out scope, timelines, and success metrics so we're aligned before any work begins." },
+  { num: "02", title: "Planning", desc: "Creating site-map & strategy", detail: "I translate goals into a clear site-map, content strategy, and technical plan — defining pages, user flows, and the stack that fits your needs and budget." },
+  { num: "03", title: "Design", desc: "UI prototypes & branding", detail: "High-fidelity prototypes bring the vision to life. We refine typography, color, and layout until the design feels unmistakably yours and converts visitors." },
+  { num: "04", title: "Development", desc: "Writing high-quality code", detail: "Clean, modern, well-structured code built on current best practices — fast, accessible, responsive, and easy to maintain as you grow." },
+  { num: "05", title: "Testing", desc: "Optimizing speed & response", detail: "Rigorous cross-device and cross-browser testing, performance tuning, and accessibility checks to guarantee a flawless experience everywhere." },
+  { num: "06", title: "Launch", desc: "Deploying to live servers", detail: "Smooth deployment with proper DNS, SSL, analytics, and SEO configuration — plus a final walkthrough so you're confident on day one." },
+  { num: "07", title: "Support", desc: "Maintenance & performance", detail: "Post-launch I stay on hand for updates, monitoring, and improvements — keeping your site secure, fast, and evolving with your business." },
+];
+
+// Pricing-specific FAQs for the /pricing page
+export const pricingFaqs = [
+  { q: "Are there any hidden fees?", a: "No. The price you see is the price you pay. Any optional add-ons (hosting setup, extra pages, integrations) are quoted transparently before we start." },
+  { q: "What does “one-time” mean?", a: "Each package is a one-time project fee for the build. Optional ongoing maintenance is available separately if you'd like continued support." },
+  { q: "Can I upgrade my plan later?", a: "Absolutely. We can start with a Starter build and expand into more pages, e-commerce, or custom features as your business grows." },
+  { q: "Do you offer custom quotes?", a: "Yes — if your project doesn't fit neatly into a plan, reach out and I'll put together a tailored quote based on your exact requirements." },
+];
+
+// Brand values for the /about page
+export const values = [
+  { title: "Clarity over clutter", desc: "Every element earns its place. Clean, intentional design that guides visitors to action." },
+  { title: "Performance first", desc: "Speed is a feature. I build lean, fast sites that respect your visitors and your rankings." },
+  { title: "Built to convert", desc: "Beautiful is the baseline. Everything is designed around turning visitors into customers." },
+  { title: "Honest partnership", desc: "Transparent timelines, clear communication, and support that doesn't disappear after launch." },
+];
