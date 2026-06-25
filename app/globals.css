@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #19171c;
+  --paper: #ffffff;
+  --card: #f2f1f3;
+  --purple: #7a40ed;
+  --muted: #6e6e73;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--purple); color: #fff; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Utilities */
+.shell { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: clamp(1.25rem, 4vw, 2.5rem); padding-right: clamp(1.25rem, 4vw, 2.5rem); }
+
+.display { font-weight: 600; letter-spacing: -0.04em; line-height: 0.98; }
+
+/* gradient orb */
+.orb { position: absolute; border-radius: 9999px; filter: blur(80px); opacity: 0.55; pointer-events: none; z-index: 0; }
+
+/* hide scrollbar utility for marquees */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
