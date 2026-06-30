@@ -1,38 +1,33 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import BentoServices from "@/components/BentoServices";
-import FadeUp from "@/components/FadeUp";
+import Faq from "@/components/Faq";
+import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Services — DevStudio",
-  description: "End-to-end web design and development solutions tailored to grow your business and convert visitors into customers.",
+  title: "Services",
+  description:
+    "Design and engineering services from DevStudio: website design, development, landing pages, e-commerce, redesigns, and ongoing care.",
 };
 
 export default function ServicesPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         <PageHero
           kicker="Services"
-          title="Everything you need to grow online."
-          subtitle="From design to development, landing pages to e-commerce — pick a service to see exactly what's included and request a free quote."
+          title="Everything your site needs, from one team."
+          subtitle="From first sketch to launch and care. Pick a service to see what is included and request a quote."
         />
         <BentoServices bare />
-        <section className="pb-24 md:pb-32">
-          <FadeUp className="shell">
-            <div className="rounded-4xl bg-ink text-white p-10 md:p-16 text-center">
-              <h2 className="display text-3xl md:text-5xl max-w-2xl mx-auto">Not sure which service fits?</h2>
-              <p className="text-white/60 mt-4 max-w-xl mx-auto">Tell me about your goals and I&apos;ll recommend the right approach — no pressure, no jargon.</p>
-              <Link href="/contact" className="inline-block mt-7 bg-purple text-white px-7 py-3.5 rounded-full font-semibold hover:bg-purple-dark transition-all duration-300 ease-premium">
-                Get Free Consultation
-              </Link>
-            </div>
-          </FadeUp>
-        </section>
+        <Faq />
+        <CtaBand
+          title="Not sure which one you need?"
+          body="Tell us the goal and we will point you to the right scope. No pressure, no jargon."
+        />
       </main>
       <Footer />
     </>

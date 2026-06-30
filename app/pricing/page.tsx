@@ -6,19 +6,20 @@ import Pricing from "@/components/Pricing";
 import PricingFaq from "@/components/PricingFaq";
 
 export const metadata: Metadata = {
-  title: "Pricing — DevStudio",
-  description: "Transparent, growth-focused pricing with zero hidden fees. Choose a plan or request a custom quote.",
+  title: "Pricing",
+  description:
+    "Clear, growth-focused pricing from DevStudio with no hidden fees. Pick a scope or request a tailored quote.",
 };
 
 export default function PricingPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         <PageHero
           kicker="Pricing"
           title="Simple pricing, built for growth."
-          subtitle="Zero hidden fees. Choose a plan that fits your business stage, or request a fully customized solution tailored to your exact needs."
+          subtitle="No hidden fees. Choose the scope that fits where the business is now, or ask for a tailored quote."
         />
         <Pricing bare />
         <PricingFaq />

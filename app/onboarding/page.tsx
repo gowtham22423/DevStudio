@@ -4,12 +4,33 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE_PREMIUM } from "@/components/FadeUp";
+import Button from "@/components/Button";
 
 const steps = [
-  { key: "welcome", title: "Welcome to Your Portal!", body: "Thank you for logging in! We've prepared a brief step-by-step setup wizard to configure your project workspace preferences and help you navigate the system.", cta: "Next: Setup Profile" },
-  { key: "profile", title: "Set Up Your Profile", body: "Tell us a bit about you and your business so we can tailor your workspace, project boards, and recommendations to your goals.", cta: "Next: Preferences" },
-  { key: "preferences", title: "Your Preferences", body: "Choose how you'd like to collaborate — notification cadence, preferred communication channel, and project visibility defaults.", cta: "Next: Quick Tutorial" },
-  { key: "tutorial", title: "Quick Tutorial", body: "Your dashboard gives you project boards, invoices, and direct messaging. You're all set — let's jump into your portal.", cta: "Finish & Enter Portal" },
+  {
+    key: "welcome",
+    title: "Welcome to your portal",
+    body: "Thanks for signing in. We will set up your workspace in a few short steps so everything is ready when your project starts.",
+    cta: "Set up profile",
+  },
+  {
+    key: "profile",
+    title: "Tell us about you",
+    body: "A little about you and your business helps us tailor your boards, recommendations, and the way we work together.",
+    cta: "Next: preferences",
+  },
+  {
+    key: "preferences",
+    title: "Your preferences",
+    body: "Choose how you like to collaborate: how often we update you, your preferred channel, and default project visibility.",
+    cta: "Next: a quick tour",
+  },
+  {
+    key: "tutorial",
+    title: "You are all set",
+    body: "Your dashboard holds project boards, invoices, and messages in one place. Jump in whenever you are ready.",
+    cta: "Enter portal",
+  },
 ];
 
 export default function OnboardingPage() {
@@ -18,40 +39,66 @@ export default function OnboardingPage() {
   const step = steps[i];
   const progress = ((i + 1) / steps.length) * 100;
 
+  const finish = () => {
+    localStorage.setItem("devstudio_onboarding_step", "completed");
+    router.push("/");
+  };
+
   const next = () => {
     if (i < steps.length - 1) {
       const n = i + 1;
       setI(n);
       localStorage.setItem("devstudio_onboarding_step", steps[n].key);
     } else {
-      localStorage.setItem("devstudio_onboarding_step", "completed");
-      router.push("/");
+      finish();
     }
   };
 
   return (
-    <main className="min-h-screen bg-card flex items-center justify-center px-4 py-16">
-      <div className="w-full max-w-lg bg-paper border border-black/8 rounded-4xl p-8 md:p-12 text-center shadow-[0_30px_60px_-25px_rgba(25,23,28,0.2)]">
-        <span className="text-2xl font-semibold tracking-tightest inline-flex items-center gap-1">
-          DevStudio<span className="w-2 h-2 rounded-full bg-purple inline-block mt-2" />
+    <main id="main-content" className="min-h-[100dvh] bg-sand grid place-items-center px-4 py-16">
+      <div className="w-full max-w-lg bg-paper border border-ink/10 rounded-panel p-8 md:p-12 text-center shadow-soft">
+        <span className="inline-flex items-center gap-2.5" aria-hidden>
+          <span className="w-2.5 h-2.5 rounded-[3px] bg-accent" />
+          <span className="text-lg font-semibold tracking-tight2">DevStudio</span>
         </span>
 
-        <div className="h-1.5 bg-card rounded-full mt-8 overflow-hidden">
-          <motion.div className="h-full bg-purple rounded-full" initial={false} animate={{ width: `${progress}%` }} transition={{ duration: 0.5, ease: EASE_PREMIUM }} />
+        <div
+          className="h-1.5 bg-sanddeep rounded-full mt-8 overflow-hidden"
+          role="progressbar"
+          aria-valuenow={i + 1}
+          aria-valuemin={1}
+          aria-valuemax={steps.length}
+          aria-label={`Step ${i + 1} of ${steps.length}`}
+        >
+          <motion.div
+            className="h-full bg-accent rounded-full"
+            initial={false}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.5, ease: EASE_PREMIUM }}
+          />
         </div>
-        <span className="text-xs font-semibold uppercase tracking-wider text-purple mt-4 inline-block">Step {i + 1} of {steps.length}</span>
+        <span className="eyebrow block mt-4">Step {i + 1} of {steps.length}</span>
 
         <AnimatePresence mode="wait">
-          <motion.div key={step.key} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.4, ease: EASE_PREMIUM }}>
-            <h1 className="display text-3xl mt-4">{step.title}</h1>
-            <p className="text-muted mt-4 leading-relaxed">{step.body}</p>
+          <motion.div
+            key={step.key}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -14 }}
+            transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+          >
+            <h1 className="display text-3xl mt-5">{step.title}</h1>
+            <p className="text-ink-500 leading-relaxed mt-4">{step.body}</p>
           </motion.div>
         </AnimatePresence>
 
-        <button onClick={next} className="w-full bg-purple text-white py-3.5 rounded-full font-semibold hover:bg-purple-dark transition-all duration-300 ease-premium mt-8">
+        <Button onClick={next} size="lg" className="w-full mt-8">
           {step.cta}
-        </button>
-        <button onClick={() => { localStorage.setItem("devstudio_onboarding_step", "completed"); router.push("/"); }} className="text-sm text-muted-soft hover:text-ink mt-4 transition-colors">
+        </Button>
+        <button
+          onClick={finish}
+          className="text-sm text-ink-500 hover:text-ink mt-4 transition-colors"
+        >
           Skip for now
         </button>
       </div>

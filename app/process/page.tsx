@@ -1,35 +1,31 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import FadeUp from "@/components/FadeUp";
 import ProcessTimeline from "@/components/ProcessTimeline";
+import CtaBand from "@/components/CtaBand";
+import { methodology } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Process — DevStudio",
-  description: "A transparent, structured workflow from discovery to launch and beyond.",
+  title: "Process",
+  description:
+    "The Blueprint is the six-phase method DevStudio runs on every project: discovery, strategy, design, build, launch, and partnership.",
 };
 
 export default function ProcessPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         <PageHero
-          kicker="Process"
-          title="How great websites get built."
-          subtitle="From initial idea to launch and beyond, I follow a transparent, structured workflow designed to keep projects running efficiently — and keep you in the loop at every step."
+          kicker={methodology.tagline}
+          title="The Blueprint: how we build."
+          subtitle={methodology.intro}
         />
-        <section className="pb-24 md:pb-32">
+        <section className="py-20 md:py-28">
           <ProcessTimeline />
         </section>
-        <section className="pb-24 md:pb-32">
-          <FadeUp className="shell text-center">
-            <h2 className="display text-4xl md:text-6xl">Let&apos;s start with a discovery call.</h2>
-            <Link href="/contact" className="inline-block mt-8 bg-purple text-white px-7 py-3.5 rounded-full font-semibold hover:bg-purple-dark transition-all duration-300 ease-premium">Get Free Consultation</Link>
-          </FadeUp>
-        </section>
+        <CtaBand title="Start with a discovery call." body="Thirty minutes to map the goal, the scope, and whether we are a fit." />
       </main>
       <Footer />
     </>

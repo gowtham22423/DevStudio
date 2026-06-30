@@ -3,44 +3,74 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import FadeUp from "@/components/FadeUp";
+import SectionHeading from "@/components/SectionHeading";
 import { Why } from "@/components/WhyProcess";
 import { Testimonials, StatsRow } from "@/components/Testimonials";
-import { values } from "@/lib/content";
+import { studioStory, team } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "About — DevStudio",
-  description: "I build digital products that drive growth — modern, high-performing websites that convert visitors into customers.",
+  title: "About",
+  description:
+    "DevStudio is a small web design and engineering studio. We help ambitious brands launch fast, clear, conversion-focused websites.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         <PageHero
           kicker="About"
-          title="I build digital products that drive growth."
-          subtitle="I help businesses establish a strong online presence through modern, high-performing websites that convert visitors into customers."
+          title="A small studio that ships work that performs."
+          subtitle={studioStory.lede}
         />
-        <section className="pb-20">
-          <StatsRow />
-        </section>
-        <section className="pb-24 md:pb-32 bg-card pt-24 md:pt-32">
-          <div className="shell">
-            <FadeUp className="mb-12">
-              <span className="text-sm font-semibold uppercase tracking-wider text-purple">What I value</span>
-              <h2 className="display text-4xl md:text-6xl mt-3">Principles behind every build.</h2>
+
+        {/* Story */}
+        <section className="py-20 md:py-28">
+          <div className="shell grid lg:grid-cols-12 gap-10 lg:gap-12">
+            <FadeUp className="lg:col-span-5">
+              <p className="display text-2xl md:text-3xl leading-snug text-balance">
+                We treat design and engineering as one job, not two handoffs.
+              </p>
             </FadeUp>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {values.map((v, i) => (
-                <FadeUp key={v.title} delay={i * 0.06} className="bg-paper rounded-4xl p-8">
-                  <h3 className="display text-2xl">{v.title}</h3>
-                  <p className="text-muted mt-3">{v.desc}</p>
+            <div className="lg:col-span-7 flex flex-col gap-5">
+              {studioStory.body.map((p, i) => (
+                <FadeUp as="p" key={i} delay={i * 0.05} className="text-ink-500 text-lg leading-relaxed">
+                  {p}
                 </FadeUp>
               ))}
             </div>
           </div>
         </section>
+
+        {/* Stats */}
+        <section className="pb-20 md:pb-28">
+          <StatsRow />
+        </section>
+
+        {/* Team */}
+        <section className="py-20 md:py-28 bg-sand/60">
+          <div className="shell">
+            <SectionHeading
+              title="The people on your project."
+              intro="You work with the team doing the work, from the first call to launch and beyond."
+              className="mb-12"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/10 rounded-card overflow-hidden border border-ink/10">
+              {team.map((m, i) => (
+                <FadeUp key={m.name} delay={i * 0.05} className="bg-paper p-7 flex flex-col h-full">
+                  <span className="grid place-items-center w-12 h-12 rounded-full bg-sanddeep font-mono text-sm font-semibold text-ink">
+                    {m.initials}
+                  </span>
+                  <h3 className="display text-xl mt-5">{m.name}</h3>
+                  <p className="text-sm text-accent-deep font-medium mt-0.5">{m.role}</p>
+                  <p className="text-ink-500 text-sm leading-relaxed mt-3">{m.bio}</p>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Why />
         <Testimonials />
       </main>

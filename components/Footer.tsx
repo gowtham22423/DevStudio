@@ -1,60 +1,105 @@
-"use client";
-
 import Link from "next/link";
-import { nav, contact } from "@/lib/content";
+import { nav, contact, CTA_LABEL } from "@/lib/content";
+import Button from "./Button";
+import Icon from "./Icon";
+
+const socialIcon: Record<string, string> = {
+  GitHub: "GithubLogo",
+  LinkedIn: "LinkedinLogo",
+  X: "XLogo",
+  Instagram: "InstagramLogo",
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white pt-20 pb-10">
-      <div className="shell">
-        <div className="flex flex-wrap items-center justify-between gap-6 pb-14 border-b border-white/10">
-          <h2 className="display text-4xl md:text-5xl max-w-xl">Have a project in mind?</h2>
-          <Link
-            href="/contact"
-            className="bg-purple text-white px-6 py-3.5 rounded-full font-semibold hover:bg-purple-dark hover:-translate-y-0.5 transition-all duration-300 ease-premium"
-          >
-            Get Free Consultation
-          </Link>
+    <footer className="bg-ink text-paper">
+      <div className="shell pt-20 md:pt-28 pb-10">
+        {/* Final CTA */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 pb-14 border-b border-paper/12">
+          <div>
+            <span className="eyebrow text-accent-soft">Let&apos;s build</span>
+            <h2 className="display text-display-sm md:text-display mt-4 max-w-xl text-balance">
+              Have something worth building?
+            </h2>
+          </div>
+          <Button href="/contact" variant="accent" size="lg" icon>
+            {CTA_LABEL}
+          </Button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 py-14">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-2xl font-semibold tracking-tightest flex items-center gap-1">
-              DevStudio<span className="w-2 h-2 rounded-full bg-purple inline-block mt-2" />
+        {/* Columns */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 py-14">
+          <div className="col-span-2 md:col-span-5">
+            <Link href="/" className="flex items-center gap-2.5" aria-label="DevStudio home">
+              <span className="w-2.5 h-2.5 rounded-[3px] bg-accent" />
+              <span className="text-xl font-semibold tracking-tight2">DevStudio</span>
             </Link>
-            <p className="text-white/50 text-sm mt-4 max-w-xs">
-              Designing and developing premium custom websites that convert clicks into permanent clients for your brand.
+            <p className="text-paper/55 mt-5 max-w-xs leading-relaxed">
+              A web design and engineering studio building fast, considered websites that convert.
             </p>
+            <div className="flex items-center gap-2 mt-6">
+              {contact.socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="grid place-items-center w-10 h-10 rounded-md border border-paper/15 text-paper/70 hover:text-paper hover:border-paper/35 transition-colors"
+                  aria-label={s.label}
+                  target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                  <Icon name={socialIcon[s.label] ?? "ArrowUpRight"} size={18} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-wider text-white/40 mb-1">Menu</span>
-            {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm text-white/75 hover:text-purple transition-colors w-fit">
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="text-sm text-white/75 hover:text-purple transition-colors w-fit">Contact</Link>
-          </div>
+          <nav className="md:col-span-3" aria-label="Footer">
+            <span className="eyebrow text-paper/40">Studio</span>
+            <ul className="flex flex-col gap-3 mt-5">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-paper/70 hover:text-paper transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/contact" className="text-paper/70 hover:text-paper transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-          <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-wider text-white/40 mb-1">Social</span>
-            {["LinkedIn", "Twitter / X", "GitHub", "Instagram"].map((s) => (
-              <a key={s} href="#" className="text-sm text-white/75 hover:text-purple transition-colors w-fit">{s}</a>
-            ))}
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase tracking-wider text-white/40 mb-1">Contact</span>
-            <a href={`mailto:${contact.email}`} className="text-sm text-white/75 hover:text-purple transition-colors w-fit">{contact.email}</a>
-            <span className="text-sm text-white/75">{contact.phone}</span>
-            <span className="text-sm text-white/75">{contact.location}</span>
+          <div className="md:col-span-4">
+            <span className="eyebrow text-paper/40">Get in touch</span>
+            <ul className="flex flex-col gap-3 mt-5">
+              <li>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="inline-flex items-center gap-2 text-paper/70 hover:text-paper transition-colors"
+                >
+                  <Icon name="At" size={17} aria-hidden /> {contact.email}
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-paper/70">
+                <Icon name="MapPin" size={17} aria-hidden /> {contact.location}
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-4 pt-8 text-sm text-white/50">
-          <span>© 2026 DevStudio. All Rights Reserved.</span>
-          <span>Designed for high conversion &amp; performance.</span>
+        {/* Legal */}
+        <div className="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-paper/12 text-sm text-paper/45">
+          <span>© {new Date().getFullYear()} DevStudio. All rights reserved.</span>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-paper/80 transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-paper/80 transition-colors">
+              Terms
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

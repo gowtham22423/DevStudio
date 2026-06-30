@@ -5,58 +5,36 @@ export default function ProjectVisual({
   project,
   className = "",
   big = false,
+  priority = false,
 }: {
   project: Project;
   className?: string;
   big?: boolean;
+  priority?: boolean;
 }) {
-  const hasImage = Boolean(project.image);
-
   return (
-    <div
-      className={`relative w-full h-full overflow-hidden ${className}`}
-      style={hasImage ? undefined : { background: project.gradient }}
-    >
-      {hasImage ? (
-        <>
-          <Image
-            src={project.image as string}
-            alt={project.title}
-            fill
-            className="object-cover"
-            sizes="(max-width:768px) 100vw, 50vw"
-          />
-          {/* legibility scrim */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        </>
-      ) : (
-        <>
-          {/* soft light blob */}
-          <div className="absolute -top-1/3 -right-1/4 w-2/3 h-2/3 rounded-full bg-white/20 blur-3xl" />
-          {/* dotted grid motif */}
-          <div
-            className="absolute inset-0 opacity-[0.18]"
-            style={{
-              backgroundImage: "radial-gradient(rgba(255,255,255,0.7) 1px, transparent 1px)",
-              backgroundSize: big ? "26px 26px" : "20px 20px",
-            }}
-          />
-          {/* concentric ring motif */}
-          <div className="absolute -bottom-16 -left-10 w-56 h-56 rounded-full border border-white/20" />
-          <div className="absolute -bottom-24 -left-4 w-56 h-56 rounded-full border border-white/10" />
-        </>
+    <div className={`relative w-full h-full overflow-hidden bg-sand ${className}`}>
+      {project.image && (
+        <Image
+          src={project.image}
+          alt={`${project.title}, a ${project.industry.toLowerCase()} project by DevStudio`}
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-top"
+        />
       )}
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/15 to-transparent" />
 
-      {/* monogram */}
-      <div className="absolute top-5 left-6 flex items-center gap-2 z-10">
-        <span className="display text-white text-xl tracking-tightest drop-shadow">{project.monogram}</span>
-        <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
-      </div>
+      <span className="absolute top-5 left-5 grid place-items-center w-9 h-9 rounded-sm bg-paper/95 font-mono text-xs font-semibold text-ink">
+        {project.monogram}
+      </span>
 
-      {/* title + category */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-        <span className="text-xs font-semibold uppercase tracking-wider text-white/80">{project.category}</span>
-        <div className={`display text-white mt-1 ${big ? "text-4xl" : "text-2xl"}`}>{project.title}</div>
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <span className="text-xs font-medium tracking-wide text-paper/75">{project.industry}</span>
+        <div className={`display text-paper mt-1 ${big ? "text-3xl md:text-4xl" : "text-2xl"}`}>
+          {project.title}
+        </div>
       </div>
     </div>
   );

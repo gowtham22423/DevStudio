@@ -2,48 +2,102 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { nav } from "@/lib/content";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { nav, CTA_LABEL } from "@/lib/content";
+import Button from "./Button";
+import Icon from "./Icon";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // lock body scroll while the mobile drawer is open
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
+  // Scroll state via Framer Motion (no raw window scroll listener).
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
+  // Lock body scroll while drawer is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  // Close on route change.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Focus management + trap + Esc while the drawer is open.
+  useEffect(() => {
+    if (!open) return;
+    const node = drawerRef.current;
+    if (!node) return;
+    const focusables = node.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled])'
+    );
+    focusables[0]?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key === "Tab" && focusables.length) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      toggleRef.current?.focus();
+    };
+  }, [open]);
+
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-premium ${
-          scrolled ? "py-3 bg-paper/70 backdrop-blur-xl border-b border-black/5" : "py-5 border-b border-transparent"
+      <motion.header
+        initial={false}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-400 ease-premium ${
+          scrolled
+            ? "py-3 bg-paper/80 backdrop-blur-xl border-b border-ink/8"
+            : "py-4 border-b border-transparent"
         }`}
       >
         <div className="shell flex items-center justify-between gap-6">
-          <Link href="/" className="text-xl font-semibold tracking-tightest flex items-center gap-1 relative z-[70]">
-            DevStudio<span className="w-2 h-2 rounded-full bg-purple inline-block mt-2" />
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 relative z-[70]"
+            aria-label="DevStudio home"
+          >
+            <span className="w-2.5 h-2.5 rounded-[3px] bg-accent" />
+            <span className="text-[19px] font-semibold tracking-tight2">DevStudio</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium px-3.5 py-2 rounded-full transition-colors duration-300 ${
-                  isActive(item.href) ? "text-ink bg-card" : "text-muted hover:text-ink hover:bg-card"
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`text-[15px] px-3.5 py-2 rounded-md transition-colors duration-300 ${
+                  isActive(item.href)
+                    ? "text-ink bg-ink/[0.06]"
+                    : "text-ink-500 hover:text-ink hover:bg-ink/[0.04]"
                 }`}
               >
                 {item.label}
@@ -51,57 +105,65 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
-            <Link href="/login" className="text-sm font-semibold hover:text-purple transition-colors">
-              Login
-            </Link>
+          <div className="hidden md:flex items-center gap-2">
             <Link
-              href="/contact"
-              className="text-sm font-semibold bg-purple text-white px-4 py-2 rounded-full hover:bg-purple-dark hover:-translate-y-0.5 transition-all duration-300 ease-premium"
+              href="/login"
+              className="text-[15px] font-medium text-ink-500 hover:text-ink transition-colors px-3 py-2"
             >
-              Get Free Consultation
+              Sign in
             </Link>
+            <Button href="/contact" size="sm">
+              {CTA_LABEL}
+            </Button>
           </div>
 
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 relative z-[70]"
-            aria-label="Toggle menu"
+            ref={toggleRef}
+            className="md:hidden grid place-items-center w-11 h-11 -mr-2 relative z-[70] text-ink"
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-drawer"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className={`w-6 h-0.5 bg-ink rounded transition-transform duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`w-6 h-0.5 bg-ink rounded transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
-            <span className={`w-6 h-0.5 bg-ink rounded transition-transform duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+            <Icon name={open ? "X" : "List"} size={24} />
           </button>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Mobile drawer — rendered OUTSIDE the header so backdrop-blur can't clip it */}
+      {/* Mobile drawer */}
       <div
-        className={`md:hidden fixed inset-0 z-[60] bg-paper flex flex-col items-start justify-center gap-1 px-8 transition-transform duration-500 ease-premium ${
+        ref={drawerRef}
+        id="mobile-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        className={`md:hidden fixed inset-0 z-[60] bg-paper flex flex-col px-7 pt-24 pb-10 transition-transform duration-400 ease-premium ${
           open ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >
-        {nav.map((item) => (
+        <nav className="flex flex-col gap-1" aria-label="Mobile">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={`text-3xl font-semibold tracking-tight2 py-2.5 border-b border-ink/8 ${
+                isActive(item.href) ? "text-accent-deep" : "text-ink"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
           <Link
-            key={item.href}
-            href={item.href}
-            onClick={() => setOpen(false)}
-            className={`text-4xl font-semibold tracking-tightest py-2 ${isActive(item.href) ? "text-purple" : "text-ink"}`}
+            href="/login"
+            className="text-3xl font-semibold tracking-tight2 py-2.5 border-b border-ink/8 text-ink"
           >
-            {item.label}
+            Sign in
           </Link>
-        ))}
-        <Link href="/login" onClick={() => setOpen(false)} className="text-4xl font-semibold tracking-tightest py-2 text-ink">
-          Login
-        </Link>
-        <Link
-          href="/contact"
-          onClick={() => setOpen(false)}
-          className="mt-5 bg-purple text-white px-7 py-3.5 rounded-full font-semibold text-lg"
-        >
-          Get Free Consultation
-        </Link>
+        </nav>
+        <Button href="/contact" size="lg" icon className="mt-8 w-full">
+          {CTA_LABEL}
+        </Button>
       </div>
     </>
   );
